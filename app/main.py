@@ -1,39 +1,46 @@
 from fastapi import FastAPI, Request, Form, UploadFile, File
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse, Response
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from typing import List
+from jinja2 import Environment, FileSystemLoader
 import shutil
 import os
-import requests
 
 app = FastAPI()
 
-# Templates
+# Templates directory
 templates = Jinja2Templates(directory="app/templates")
 
-# Static folder for uploaded images
-if not os.path.exists("static"):
-    os.makedirs("static")
+# Ensure static folder exists
+if not os.path.exists("app/static"):
+    os.makedirs("app/static")
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 
 # -----------------------------
-# HOME → Redirect to Builder
+# HOME PAGE (Landing)
 # -----------------------------
 @app.get("/", response_class=HTMLResponse)
+async def home(request: Request):
+    return templates.TemplateResponse("home.html", {"request": request})
+
+
+# -----------------------------
+# BUILDER PAGE
+# -----------------------------
+@app.get("/builder", response_class=HTMLResponse)
 async def builder(request: Request):
     return templates.TemplateResponse("builder.html", {"request": request})
 
 
 # -----------------------------
-# GENERATE PORTFOLIO
+# GENERATE PORTFOLIO (View)
 # -----------------------------
 @app.post("/generate", response_class=HTMLResponse)
 async def generate_portfolio(
     request: Request,
-
     template: str = Form("executive_dark.html"),
     name: str = Form(...),
     title: str = Form(...),
@@ -48,10 +55,8 @@ async def generate_portfolio(
     profile_image: UploadFile = File(None)
 ):
 
-    # Process skills
     skills_list = [s.strip() for s in skills.split(",") if s.strip()]
 
-    # Process experiences
     experience_list = []
     for i in range(len(job_title)):
         if job_title[i].strip():
@@ -62,10 +67,9 @@ async def generate_portfolio(
                 "description": job_description[i] if i < len(job_description) else ""
             })
 
-    # Handle image upload
     image_filename = None
     if profile_image and profile_image.filename:
-        image_path = f"static/{profile_image.filename}"
+        image_path = f"app/static/{profile_image.filename}"
         with open(image_path, "wb") as buffer:
             shutil.copyfileobj(profile_image.file, buffer)
         image_filename = profile_image.filename
@@ -87,7 +91,6 @@ async def generate_portfolio(
 @app.post("/preview", response_class=HTMLResponse)
 async def preview_portfolio(
     request: Request,
-
     template: str = Form("executive_dark.html"),
     name: str = Form(""),
     title: str = Form(""),
@@ -116,7 +119,7 @@ async def preview_portfolio(
 
     image_filename = None
     if profile_image and profile_image.filename:
-        image_path = f"static/{profile_image.filename}"
+        image_path = f"app/static/{profile_image.filename}"
         with open(image_path, "wb") as buffer:
             shutil.copyfileobj(profile_image.file, buffer)
         image_filename = profile_image.filename
@@ -133,38 +136,8 @@ async def preview_portfolio(
 
 
 # -----------------------------
-# AI SUMMARY ENHANCEMENT
-# (Using Ollama locally)
+# DOWNLOAD PORTFOLIO (HTML)
 # -----------------------------
-@app.post("/enhance-summary")
-async def enhance_summary(summary: str = Form(...)):
-
-    prompt = f"""
-Rewrite this professional summary to sound polished, executive-level,
-clear, confident and concise:
-
-{summary}
-"""
-
-    try:
-        response = requests.post(
-            "http://localhost:11434/api/generate",
-            json={
-                "model": "mistral",
-                "prompt": prompt,
-                "stream": False
-            }
-        )
-
-        enhanced = response.json()["response"]
-
-        return JSONResponse({"enhanced": enhanced})
-
-    except:
-        return JSONResponse({"enhanced": summary})
-from fastapi.responses import Response
-from jinja2 import Environment, FileSystemLoader
-
 @app.post("/download")
 async def download_portfolio(
     request: Request,
@@ -192,7 +165,6 @@ async def download_portfolio(
                 "description": job_description[i] if i < len(job_description) else ""
             })
 
-    # Render template manually
     env = Environment(loader=FileSystemLoader("app/templates"))
     template_file = env.get_template(template)
 
