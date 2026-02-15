@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stratfolio Builder</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f8fafc;
+        }
+
+        .wrapper {
+            display: flex;
+            height: 100vh;
+        }
+
+        .form-section {
+            width: 40%;
+            padding: 40px;
+            overflow-y: auto;
+            background: white;
+            border-right: 1px solid #e2e8f0;
+        }
+
+        .preview-section {
+            width: 60%;
+            padding: 20px;
+            overflow-y: auto;
+            background: #0f172a;
+        }
+
+        h1 {
+            font-size: 22px;
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            margin-top: 30px;
+            font-size: 16px;
+            color: #475569;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #475569;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            font-size: 14px;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        button {
+            padding: 10px 16px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .primary-btn {
+            background: #0f172a;
+            color: white;
+        }
+
+        .secondary-btn {
+            background: #6366f1;
+            color: white;
+        }
+
+        .add-btn {
+            background: #e2e8f0;
+        }
+
+        .ai-loading {
+            font-size: 13px;
+            color: #6366f1;
+            display: none;
+            margin-top: 5px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin: 20px 0;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- LEFT FORM -->
+    <div class="form-section">
+
+        <h1>Stratfolio Builder</h1>
+
+        <form action="/generate" method="post" enctype="multipart/form-data">
+            <label>Choose Template</label>
+            <select name="template">
+                <option value="executive_dark.html">Executive Dark</option>
+                <option value="executive_light.html">Executive Light</option>
+                <option value="minimal_clean.html">Minimal Clean</option>
+            </select>
+
+            <label>Name</label>
+            <input type="text" name="name">
+
+            <label>Professional Title</label>
+            <input type="text" name="title">
+
+            <label>Summary</label>
+            <textarea name="summary" rows="4"></textarea>
+
+            <button type="button" class="secondary-btn" onclick="enhanceSummary()">✨ Enhance Summary</button>
+            <div id="ai-loading" class="ai-loading">Enhancing summary...</div>
+
+            <label>Skills (comma separated)</label>
+            <input type="text" name="skills">
+
+            <label>Profile Image</label>
+            <input type="file" name="profile_image">
+
+            <h3>Experience</h3>
+
+            <div id="experience-container">
+                <div class="experience-block">
+
+                    <label>Job Title</label>
+                    <input type="text" name="job_title">
+
+                    <label>Company</label>
+                    <input type="text" name="company">
+
+                    <label>Duration</label>
+                    <input type="text" name="duration">
+
+                    <label>Description</label>
+                    <textarea name="job_description" rows="3"></textarea>
+
+                    <hr>
+                </div>
+            </div>
+
+            <button type="button" class="add-btn" onclick="addExperience()">+ Add Another Experience</button>
+            <br><br>
+
+            <button type="submit" class="primary-btn">Generate Portfolio</button>
+            <button formaction="/download" formmethod="post" class="secondary-btn">
+            Download Portfolio
+            </button>
+
+
+        </form>
+
+    </div>
+
+    <!-- RIGHT PREVIEW -->
+    <div class="preview-section" id="preview">
+        <div style="color:white; opacity:0.6;">Live preview will appear here...</div>
+    </div>
+
+</div>
+
+
+<script>
+
+function addExperience() {
+    const container = document.getElementById("experience-container");
+
+    const block = document.createElement("div");
+    block.className = "experience-block";
+
+    block.innerHTML = `
+        <label>Job Title</label>
+        <input type="text" name="job_title">
+
+        <label>Company</label>
+        <input type="text" name="company">
+
+        <label>Duration</label>
+        <input type="text" name="duration">
+
+        <label>Description</label>
+        <textarea name="job_description" rows="3"></textarea>
+
+        <hr>
+    `;
+
+    container.appendChild(block);
+}
+
+
+function enhanceSummary() {
+    const summaryField = document.querySelector('textarea[name="summary"]');
+    const loading = document.getElementById("ai-loading");
+
+    const formData = new FormData();
+    formData.append("summary", summaryField.value);
+
+    loading.style.display = "block";
+
+    fetch("/enhance-summary", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        loading.style.display = "none";
+
+        if (data.enhanced) {
+            summaryField.value = data.enhanced;
+            summaryField.dispatchEvent(new Event("input"));
+        }
+    })
+    .catch(() => {
+        loading.style.display = "none";
+    });
+}
+
+
+// Live preview
+document.querySelector("form").addEventListener("input", function() {
+    const formData = new FormData(this);
+
+    fetch("/preview", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.text())
+    .then(html => {
+        document.getElementById("preview").innerHTML = html;
+    });
+});
+
+</script>
+
+</body>
+</html>

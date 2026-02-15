@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ name }} | Stratfolio</title>
+
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #1e293b;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 80px 120px;
+        }
+
+        .container {
+            max-width: 900px;
+        }
+
+        h1 {
+            font-size: 52px;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 22px;
+            color: #94a3b8;
+            font-weight: 400;
+            margin-top: 0;
+            margin-bottom: 40px;
+        }
+
+        h3 {
+            margin-top: 60px;
+            font-size: 20px;
+            color: #cbd5e1;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 10px;
+        }
+
+        h4 {
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+
+        .summary {
+            line-height: 1.8;
+            font-size: 16px;
+            color: #cbd5e1;
+            max-width: 800px;
+        }
+
+        ul {
+            margin-top: 20px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: #cbd5e1;
+        }
+
+        .experience-card {
+            margin-top: 25px;
+        }
+
+        .experience-meta {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .experience-text {
+            line-height: 1.8;
+            color: #cbd5e1;
+        }
+
+        footer {
+            margin-top: 100px;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        @media (max-width: 900px) {
+            body {
+                padding: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div style="display:flex; align-items:center; gap:40px; margin-bottom:40px;">
+
+        {% if image_data %}
+        <div>
+            <img src="data:image/png;base64,{{ image_data }}" 
+                 style="width:150px; height:150px; border-radius:50%; object-fit:cover;">
+        </div>
+        {% endif %}
+
+        <div>
+            <h1>{{ name }}</h1>
+            <h2>{{ title }}</h2>
+        </div>
+
+    </div>
+
+    <div class="summary">
+        {{ summary }}
+    </div>
+
+    {% if skills %}
+    <h3>Skills</h3>
+    <ul>
+        {% for skill in skills %}
+            <li>{{ skill }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if experiences %}
+    <h3>Experience</h3>
+
+        {% for exp in experiences %}
+        <div class="experience-card">
+            <h4>{{ exp.title }}</h4>
+            <div class="experience-meta">
+                {{ exp.company }} | {{ exp.duration }}
+            </div>
+            <div class="experience-text">
+                {{ exp.description }}
+            </div>
+        </div>
+        {% endfor %}
+
+    {% endif %}
+
+    <footer>
+        Built with Stratfolio
+    </footer>
+
+</div>
+
+</body>
+</html>
