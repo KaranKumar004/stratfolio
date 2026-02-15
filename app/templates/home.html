@@ -1,82 +1,759 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Stratfolio — Build Your Portfolio in Minutes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stratfolio - Build Your Portfolio in Minutes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Crimson+Pro:wght@400;600&display=swap" rel="stylesheet">
+    
     <style>
-        body {
+        * {
             margin: 0;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #0f172a;
-            color: #e2e8f0;
-            text-align: center;
+            padding: 0;
+            box-sizing: border-box;
         }
 
+        :root {
+            --primary: #6366f1;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --accent: #ec4899;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Logo Styles */
+        .logo-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        /* Hero Section */
         .hero {
-            padding: 120px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
         }
 
         h1 {
-            font-size: 48px;
+            font-size: clamp(48px, 8vw, 96px);
+            font-weight: 700;
             margin-bottom: 20px;
+            line-height: 1.1;
+            animation: fadeInUp 0.8s ease-out;
+            background: linear-gradient(45deg, #fff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        p {
-            font-size: 18px;
-            color: #94a3b8;
-            max-width: 600px;
-            margin: auto;
-            line-height: 1.6;
+        .tagline {
+            font-size: clamp(20px, 3vw, 28px);
+            margin-bottom: 40px;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+            font-family: 'Crimson Pro', serif;
+            font-weight: 400;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
         }
 
         .btn {
-            display: inline-block;
-            margin-top: 40px;
-            padding: 14px 28px;
-            background: #6366f1;
-            color: white;
+            padding: 18px 40px;
+            font-size: 18px;
+            border-radius: 12px;
             text-decoration: none;
-            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Space Grotesk', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .section {
-            padding: 80px 20px;
-            background: #111827;
+        .btn-primary {
+            background: white;
+            color: #667eea;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        footer {
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* Icon Styles */
+        .icon {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Features Section */
+        .features {
+            background: var(--dark);
+            padding: 120px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(36px, 5vw, 56px);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 20px;
+            color: #94a3b8;
+            margin-bottom: 80px;
+            font-family: 'Crimson Pro', serif;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.05);
             padding: 40px;
-            font-size: 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            margin-bottom: 24px;
+            padding: 12px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            stroke: #6366f1;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .feature-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .feature-desc {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 120px 20px;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: white;
+            color: #f5576c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .step-title {
+            font-size: 22px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .step-desc {
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+
+        /* Templates Showcase */
+        .templates {
+            background: var(--light);
+            color: var(--dark);
+            padding: 120px 20px;
+        }
+
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .template-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .template-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .template-preview {
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .template-icon {
+            width: 80px;
+            height: 80px;
+            stroke: white;
+            fill: none;
+            stroke-width: 1.5;
+            opacity: 0.9;
+        }
+
+        .template-preview::after {
+            content: 'Preview';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.5);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: white;
+        }
+
+        .template-info {
+            padding: 25px;
+        }
+
+        .template-name {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .template-desc {
             color: #64748b;
+            font-size: 14px;
+        }
+
+        /* GitHub Section */
+        .github-guide {
+            background: var(--dark);
+            padding: 120px 20px;
+        }
+
+        .guide-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .guide-box {
+            background: rgba(255,255,255,0.05);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-top: 40px;
+        }
+
+        .guide-step {
+            margin-bottom: 30px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .guide-step::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .guide-step-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .guide-step-desc {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        code {
+            background: rgba(99, 102, 241, 0.2);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #c7d2fe;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            color: #64748b;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .features, .how-it-works, .templates, .github-guide {
+                padding: 80px 20px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .logo-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .logo-text {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="hero">
-    <h1>Build a Professional Portfolio in Minutes</h1>
-    <p>
-        Stratfolio helps students and professionals create clean,
-        modern portfolios instantly. No coding. No design tools.
-        Just structured input and a downloadable website.
-    </p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <!-- Logo -->
+            <div class="logo-container" style="margin-bottom: 40px;">
+                <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="4" y="4" width="40" height="40" rx="8" fill="white" fill-opacity="0.1"/>
+                    <path d="M14 18L24 12L34 18V32L24 38L14 32V18Z" stroke="white" stroke-width="2" fill="none"/>
+                    <circle cx="24" cy="25" r="4" fill="white"/>
+                    <path d="M20 25L24 21L28 25L24 29L20 25Z" fill="#6366f1"/>
+                </svg>
+                <span class="logo-text">Stratfolio</span>
+            </div>
 
-    <a href="/builder" class="btn">Start Building</a>
-</div>
+            <h1>Build Your Portfolio in Minutes</h1>
+            <p class="tagline">Create stunning portfolio websites.<br>No coding required. Publish to GitHub Pages for free.</p>
+            
+            <div class="cta-buttons">
+                <a href="/builder" class="btn btn-primary">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                    </svg>
+                    Start Building
+                </a>
+                <a href="#how-it-works" class="btn btn-secondary">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                        <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                    Learn How
+                </a>
+            </div>
+        </div>
+    </section>
 
-<div class="section">
-    <h2>How It Works</h2>
-    <p>
-        1. Enter your details<br>
-        2. Choose a template<br>
-        3. Download your portfolio<br>
-        4. Push it to GitHub<br>
-        5. Publish via GitHub Pages
-    </p>
-</div>
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Students Love Stratfolio</h2>
+            <p class="section-subtitle">Everything you need to showcase your work and land opportunities</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <svg class="feature-icon" viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="7" height="7" rx="1"/>
+                        <rect x="14" y="3" width="7" height="7" rx="1"/>
+                        <rect x="14" y="14" width="7" height="7" rx="1"/>
+                        <rect x="3" y="14" width="7" height="7" rx="1"/>
+                    </svg>
+                    <h3 class="feature-title">Beautiful Templates</h3>
+                    <p class="feature-desc">Choose from professionally designed templates that make your work shine. Each one is mobile-responsive and modern.</p>
+                </div>
 
-<footer>
-    © 2025 Stratfolio — Built for Students & Professionals
-</footer>
+                <div class="feature-card">
+                    <svg class="feature-icon" viewBox="0 0 24 24">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                    </svg>
+                    <h3 class="feature-title">Super Fast</h3>
+                    <p class="feature-desc">Build your portfolio in under 5 minutes. Fill in your details, pick a template, and download your website instantly.</p>
+                </div>
+
+                <div class="feature-card">
+                    <svg class="feature-icon" viewBox="0 0 24 24">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                        <line x1="12" y1="22.08" x2="12" y2="12"/>
+                    </svg>
+                    <h3 class="feature-title">AI-Powered</h3>
+                    <p class="feature-desc">Let AI enhance your professional summary to sound polished and impressive. Stand out from the crowd.</p>
+                </div>
+
+                <div class="feature-card">
+                    <svg class="feature-icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="2" y1="12" x2="22" y2="12"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                    <h3 class="feature-title">GitHub Pages Ready</h3>
+                    <p class="feature-desc">Get step-by-step instructions to publish your portfolio on GitHub Pages. Free hosting, custom domain support.</p>
+                </div>
+
+                <div class="feature-card">
+                    <svg class="feature-icon" viewBox="0 0 24 24">
+                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                        <line x1="12" y1="18" x2="12.01" y2="18"/>
+                    </svg>
+                    <h3 class="feature-title">Mobile Optimized</h3>
+                    <p class="feature-desc">Your portfolio looks perfect on all devices - phones, tablets, and desktops. No extra work needed.</p>
+                </div>
+
+                <div class="feature-card">
+                    <svg class="feature-icon" viewBox="0 0 24 24">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                    <h3 class="feature-title">Privacy First</h3>
+                    <p class="feature-desc">Your data stays with you. No accounts, no tracking, no databases. Download and own your portfolio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Four simple steps to your online portfolio</p>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Fill Your Details</h3>
+                    <p class="step-desc">Enter your name, skills, experience, education, and upload a professional photo.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Choose a Template</h3>
+                    <p class="step-desc">Pick from our collection of stunning templates. See live preview as you type.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Download HTML</h3>
+                    <p class="step-desc">Click download to get a complete, standalone HTML file ready to publish.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Publish on GitHub</h3>
+                    <p class="step-desc">Follow our guide to publish for free on GitHub Pages. Your portfolio will be live in minutes!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Templates Showcase -->
+    <section class="templates">
+        <div class="container">
+            <h2 class="section-title">Stunning Templates</h2>
+            <p class="section-subtitle">Choose the style that represents you best</p>
+            
+            <div class="templates-grid">
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
+                        <svg class="template-icon" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3"/>
+                            <line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/>
+                            <line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        </svg>
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">Executive Dark</h3>
+                        <p class="template-desc">Professional dark theme perfect for tech professionals and developers.</p>
+                    </div>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);">
+                        <svg class="template-icon" viewBox="0 0 24 24" style="stroke: #6366f1;">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3"/>
+                            <line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/>
+                            <line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        </svg>
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">Executive Light</h3>
+                        <p class="template-desc">Clean, bright design ideal for creative professionals and designers.</p>
+                    </div>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #fff 0%, #f9fafb 100%);">
+                        <svg class="template-icon" viewBox="0 0 24 24" style="stroke: #666;">
+                            <polyline points="4 7 4 4 20 4 20 7"/>
+                            <line x1="9" y1="20" x2="15" y2="20"/>
+                            <line x1="12" y1="4" x2="12" y2="20"/>
+                        </svg>
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">Minimal Clean</h3>
+                        <p class="template-desc">Ultra-minimal design that lets your work speak for itself.</p>
+                    </div>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);">
+                        <svg class="template-icon" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">Creative Bold</h3>
+                        <p class="template-desc">Vibrant and eye-catching for artists and creative professionals.</p>
+                    </div>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        <svg class="template-icon" viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">Modern Green</h3>
+                        <p class="template-desc">Fresh, modern look perfect for environmental and sustainability fields.</p>
+                    </div>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-preview" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);">
+                        <svg class="template-icon" viewBox="0 0 24 24">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                        </svg>
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">Professional Blue</h3>
+                        <p class="template-desc">Classic professional look for business and corporate roles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Publishing Guide -->
+    <section class="github-guide">
+        <div class="container">
+            <h2 class="section-title">Publish to GitHub Pages</h2>
+            <p class="section-subtitle">Free hosting for your portfolio - no credit card needed</p>
+            
+            <div class="guide-content">
+                <div class="guide-box">
+                    <div class="guide-step">
+                        <h4 class="guide-step-title">Create a GitHub Account</h4>
+                        <p class="guide-step-desc">
+                            Sign up at <code>github.com</code> if you don't have an account. It's free and takes 2 minutes!
+                        </p>
+                    </div>
+
+                    <div class="guide-step">
+                        <h4 class="guide-step-title">Create a New Repository</h4>
+                        <p class="guide-step-desc">
+                            Click the <code>+</code> icon → New repository. Name it <code>username.github.io</code> (replace 'username' with your GitHub username).
+                        </p>
+                    </div>
+
+                    <div class="guide-step">
+                        <h4 class="guide-step-title">Upload Your Portfolio</h4>
+                        <p class="guide-step-desc">
+                            Rename your downloaded portfolio file to <code>index.html</code>. Click "Add file" → "Upload files" and drop your index.html file.
+                        </p>
+                    </div>
+
+                    <div class="guide-step">
+                        <h4 class="guide-step-title">Enable GitHub Pages</h4>
+                        <p class="guide-step-desc">
+                            Go to Settings → Pages → Source: select "main" branch → Save. Your site will be live at <code>username.github.io</code> in 2-3 minutes!
+                        </p>
+                    </div>
+
+                    <div class="guide-step">
+                        <h4 class="guide-step-title">Share Your Link</h4>
+                        <p class="guide-step-desc">
+                            Add your portfolio URL to your resume, LinkedIn, and job applications. Update anytime by uploading a new index.html file!
+                        </p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 50px;">
+                    <a href="/builder" class="btn btn-primary">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                        Start Building Your Portfolio
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Stratfolio. Built for students, by students. Open source and free forever.</p>
+        </div>
+    </footer>
 
 </body>
 </html>

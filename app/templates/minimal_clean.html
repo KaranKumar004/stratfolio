@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }} - Portfolio</title>
+    <meta name="description" content="{{ title }} - {{ summary[:150] }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fafafa;
+            color: #333;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 100px 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 30px;
+            border: 2px solid #eee;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+        }
+
+        .title {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            color: #666;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s;
+            border-bottom: 1px solid transparent;
+        }
+
+        .contact-link:hover {
+            color: #000;
+            border-bottom-color: #000;
+        }
+
+        h2 {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 80px;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .summary {
+            font-size: 15px;
+            color: #444;
+            line-height: 2;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            color: #666;
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+        .skill-tag::after {
+            content: '·';
+            margin-left: 12px;
+            color: #ddd;
+        }
+
+        .skill-tag:last-child::after {
+            content: '';
+        }
+
+        .item-card {
+            margin-bottom: 50px;
+        }
+
+        .item-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: #000;
+            margin-bottom: 6px;
+        }
+
+        .item-meta {
+            color: #999;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .item-description {
+            color: #555;
+            line-height: 1.9;
+            font-size: 14px;
+        }
+
+        footer {
+            margin-top: 120px;
+            text-align: center;
+            font-size: 11px;
+            color: #ccc;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 60px 30px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="header">
+        {% if image_data %}
+        <img src="data:image/png;base64,{{ image_data }}" alt="{{ name }}" class="profile-image">
+        {% endif %}
+
+        <h1>{{ name }}</h1>
+        <div class="title">{{ title }}</div>
+
+        {% if contact.email or contact.phone or contact.linkedin or contact.github or contact.website %}
+        <div class="contact-links">
+            {% if contact.email %}
+            <a href="mailto:{{ contact.email }}" class="contact-link">{{ contact.email }}</a>
+            {% endif %}
+
+            {% if contact.linkedin %}
+            <a href="{{ contact.linkedin }}" target="_blank" class="contact-link">LinkedIn</a>
+            {% endif %}
+
+            {% if contact.github %}
+            <a href="{{ contact.github }}" target="_blank" class="contact-link">GitHub</a>
+            {% endif %}
+
+            {% if contact.website %}
+            <a href="{{ contact.website }}" target="_blank" class="contact-link">Website</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </header>
+
+    <div class="summary">
+        {{ summary }}
+    </div>
+
+    {% if skills %}
+    <section>
+        <h2>Skills</h2>
+        <div class="skills-list">
+            {% for skill in skills %}
+            <span class="skill-tag">{{ skill }}</span>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    {% if experiences %}
+    <section>
+        <h2>Experience</h2>
+        {% for exp in experiences %}
+        <div class="item-card">
+            <div class="item-title">{{ exp.title }}</div>
+            <div class="item-meta">{{ exp.company }} · {{ exp.duration }}</div>
+            <div class="item-description">{{ exp.description }}</div>
+        </div>
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if education %}
+    <section>
+        <h2>Education</h2>
+        {% for edu in education %}
+        <div class="item-card">
+            <div class="item-title">{{ edu.degree }}</div>
+            <div class="item-meta">{{ edu.institution }} · {{ edu.year }}</div>
+        </div>
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    <footer>
+        BUILT WITH STRATFOLIO
+    </footer>
+
+</div>
+
+</body>
+</html>
