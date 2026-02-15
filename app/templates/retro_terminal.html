@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }} - Portfolio</title>
+    <meta name="description" content="{{ title }} - {{ summary[:150] }}">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        @keyframes scanlines {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(10px); }
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.95; }
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        body {
+            background: #000;
+            color: #00ff00;
+            font-family: 'Courier Prime', monospace;
+            padding: 20px;
+            position: relative;
+            animation: flicker 0.15s infinite;
+        }
+
+        /* CRT Screen Effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 255, 0, 0.05) 0px,
+                transparent 1px,
+                transparent 2px,
+                rgba(0, 255, 0, 0.05) 3px
+            );
+            pointer-events: none;
+            animation: scanlines 8s linear infinite;
+            z-index: 10;
+        }
+
+        /* Vignette */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.9);
+            pointer-events: none;
+            z-index: 11;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+            background: rgba(0, 20, 0, 0.8);
+            border: 2px solid #00ff00;
+            box-shadow: 
+                0 0 20px rgba(0, 255, 0, 0.5),
+                inset 0 0 20px rgba(0, 255, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Terminal Window Header */
+        .terminal-header {
+            background: #00ff00;
+            color: #000;
+            padding: 8px 15px;
+            margin: -40px -40px 30px -40px;
+            font-family: 'VT323', monospace;
+            font-size: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .terminal-title {
+            font-weight: bold;
+        }
+
+        .terminal-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #000;
+        }
+
+        /* Prompt Style */
+        .prompt {
+            color: #00ff00;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .prompt::before {
+            content: '> ';
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background: #00ff00;
+            margin-left: 2px;
+            animation: blink 1s step-end infinite;
+        }
+
+        /* Header */
+        .header {
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .ascii-art {
+            font-family: 'Courier Prime', monospace;
+            font-size: 10px;
+            line-height: 1;
+            white-space: pre;
+            color: #00ff00;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 0;
+            object-fit: cover;
+            margin: 20px auto;
+            display: block;
+            border: 3px solid #00ff00;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+            filter: grayscale(100%) contrast(150%);
+        }
+
+        h1 {
+            font-family: 'VT323', monospace;
+            font-size: 48px;
+            margin-bottom: 10px;
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+            letter-spacing: 3px;
+        }
+
+        .title {
+            font-size: 20px;
+            color: #00ff00;
+            margin-bottom: 20px;
+            font-family: 'VT323', monospace;
+        }
+
+        .title::before {
+            content: '[ ';
+        }
+
+        .title::after {
+            content: ' ]';
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-link {
+            color: #00ff00;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 16px;
+            border: 2px solid #00ff00;
+            background: transparent;
+            transition: all 0.3s;
+            font-family: 'VT323', monospace;
+        }
+
+        .contact-link:hover {
+            background: #00ff00;
+            color: #000;
+            box-shadow: 0 0 15px #00ff00;
+        }
+
+        /* Section Headers */
+        h2 {
+            font-family: 'VT323', monospace;
+            font-size: 32px;
+            color: #00ff00;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #00ff00;
+            padding-bottom: 10px;
+        }
+
+        h2::before {
+            content: '## ';
+        }
+
+        /* Command Line Style */
+        .command-line {
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            color: #00ff00;
+        }
+
+        .command-line::before {
+            content: '$ cat about.txt';
+            display: block;
+            color: #00ff00;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        /* Summary */
+        .summary {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #00ff00;
+            margin-bottom: 40px;
+            padding: 20px;
+            border-left: 3px solid #00ff00;
+            background: rgba(0, 255, 0, 0.03);
+        }
+
+        /* Skills */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .skill-tag {
+            color: #000;
+            background: #00ff00;
+            padding: 8px 16px;
+            font-size: 16px;
+            font-family: 'VT323', monospace;
+            border: 2px solid #00ff00;
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: transparent;
+            color: #00ff00;
+            box-shadow: 0 0 15px #00ff00;
+        }
+
+        /* Cards */
+        .item-card {
+            margin-bottom: 30px;
+            padding: 25px;
+            border: 2px solid #00ff00;
+            background: rgba(0, 255, 0, 0.03);
+            transition: all 0.3s;
+        }
+
+        .item-card:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            background: rgba(0, 255, 0, 0.05);
+        }
+
+        .item-card::before {
+            content: '>';
+            margin-right: 10px;
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        .item-title {
+            font-family: 'VT323', monospace;
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ff00;
+            margin-bottom: 8px;
+        }
+
+        .item-meta {
+            color: #00ff00;
+            font-size: 16px;
+            margin-bottom: 12px;
+            opacity: 0.8;
+        }
+
+        .item-description {
+            color: #00ff00;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 80px;
+            text-align: center;
+            font-size: 14px;
+            color: #00ff00;
+            font-family: 'VT323', monospace;
+            padding: 20px;
+            border-top: 2px solid #00ff00;
+        }
+
+        footer::before {
+            content: '$ exit';
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .terminal-header {
+                margin: -20px -20px 20px -20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="terminal-header">
+            <div class="terminal-title">portfolio.sh</div>
+            <div class="terminal-buttons">
+                <div class="terminal-button"></div>
+                <div class="terminal-button"></div>
+                <div class="terminal-button"></div>
+            </div>
+        </div>
+
+        <header class="header">
+            <div class="prompt">Initializing portfolio system<span class="cursor"></span></div>
+            
+            {% if image_data %}
+            <img src="data:image/png;base64,{{ image_data }}" alt="{{ name }}" class="profile-image">
+            {% endif %}
+
+            <h1>{{ name }}</h1>
+            <div class="title">{{ title }}</div>
+
+            {% if contact.email or contact.phone or contact.linkedin or contact.github or contact.website %}
+            <div class="contact-links">
+                {% if contact.email %}
+                <a href="mailto:{{ contact.email }}" class="contact-link">[EMAIL]</a>
+                {% endif %}
+
+                {% if contact.linkedin %}
+                <a href="{{ contact.linkedin }}" target="_blank" class="contact-link">[LINKEDIN]</a>
+                {% endif %}
+
+                {% if contact.github %}
+                <a href="{{ contact.github }}" target="_blank" class="contact-link">[GITHUB]</a>
+                {% endif %}
+
+                {% if contact.website %}
+                <a href="{{ contact.website }}" target="_blank" class="contact-link">[WEBSITE]</a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </header>
+
+        <div class="command-line"></div>
+        <div class="summary">
+            {{ summary }}
+        </div>
+
+        {% if skills %}
+        <section>
+            <h2>SKILLS</h2>
+            <div class="skills-list">
+                {% for skill in skills %}
+                <span class="skill-tag">{{ skill }}</span>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+        {% if experiences %}
+        <section>
+            <h2>EXPERIENCE</h2>
+            {% for exp in experiences %}
+            <div class="item-card">
+                <div class="item-title">{{ exp.title }}</div>
+                <div class="item-meta">{{ exp.company }} | {{ exp.duration }}</div>
+                <div class="item-description">{{ exp.description }}</div>
+            </div>
+            {% endfor %}
+        </section>
+        {% endif %}
+
+        {% if education %}
+        <section>
+            <h2>EDUCATION</h2>
+            {% for edu in education %}
+            <div class="item-card">
+                <div class="item-title">{{ edu.degree }}</div>
+                <div class="item-meta">{{ edu.institution }} | {{ edu.year }}</div>
+            </div>
+            {% endfor %}
+        </section>
+        {% endif %}
+
+        <footer>
+            <p>Built with Stratfolio | Connection closed.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

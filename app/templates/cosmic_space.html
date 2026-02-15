@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }} - Portfolio</title>
+    <meta name="description" content="{{ title }} - {{ summary[:150] }}">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.5), 0 0 40px rgba(99, 102, 241, 0.3), inset 0 0 20px rgba(99, 102, 241, 0.1); }
+            50% { box-shadow: 0 0 30px rgba(99, 102, 241, 0.8), 0 0 60px rgba(99, 102, 241, 0.5), inset 0 0 30px rgba(99, 102, 241, 0.2); }
+        }
+
+        body {
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            color: #e0e7ff;
+            font-family: 'Exo 2', sans-serif;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Stars Background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        /* Create stars dynamically with CSS */
+        .stars::before,
+        .stars::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 
+                100px 200px white,
+                300px 100px white,
+                500px 300px white,
+                700px 150px white,
+                900px 250px white,
+                200px 400px white,
+                400px 500px white,
+                600px 600px white,
+                800px 450px white,
+                1000px 550px white,
+                150px 50px white,
+                450px 200px white,
+                650px 400px white,
+                850px 100px white,
+                250px 550px white,
+                550px 50px white,
+                750px 500px white,
+                50px 350px white,
+                350px 450px white,
+                950px 350px white;
+        }
+
+        .stars::after {
+            animation: twinkle 4s ease-in-out infinite 1s;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 40px;
+            border: 4px solid #6366f1;
+            animation: glow 3s ease-in-out infinite, float 4s ease-in-out infinite;
+            filter: brightness(1.1);
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 72px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .title {
+            font-size: 24px;
+            color: #a78bfa;
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            color: #e0e7ff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 12px 28px;
+            background: rgba(99, 102, 241, 0.2);
+            border: 2px solid #6366f1;
+            border-radius: 8px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-link:hover {
+            background: rgba(99, 102, 241, 0.4);
+            border-color: #a855f7;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+            transform: translateY(-3px);
+        }
+
+        /* Cosmic Divider */
+        .cosmic-divider {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #6366f1, #a855f7, #ec4899, transparent);
+            margin: 60px 0;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+        }
+
+        /* Section Headers */
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            color: #c7d2fe;
+            text-align: center;
+            margin-top: 80px;
+            margin-bottom: 40px;
+            font-weight: 700;
+            text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+            letter-spacing: 3px;
+        }
+
+        /* Summary */
+        .summary {
+            font-size: 18px;
+            line-height: 1.9;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 40px;
+            margin-bottom: 40px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        /* Skills */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .skill-tag {
+            background: rgba(99, 102, 241, 0.2);
+            color: #e0e7ff;
+            padding: 12px 24px;
+            border: 2px solid #6366f1;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-tag::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+        }
+
+        .skill-tag:hover::before {
+            left: 100%;
+        }
+
+        .skill-tag:hover {
+            background: rgba(99, 102, 241, 0.4);
+            border-color: #a855f7;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+            transform: translateY(-3px);
+        }
+
+        /* Cards */
+        .item-card {
+            margin-bottom: 30px;
+            padding: 35px;
+            background: rgba(30, 41, 59, 0.5);
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .item-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .item-card:hover::before {
+            left: 100%;
+        }
+
+        .item-card:hover {
+            border-color: #6366f1;
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .item-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: #a78bfa;
+            margin-bottom: 10px;
+        }
+
+        .item-meta {
+            color: #94a3b8;
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .item-description {
+            color: #cbd5e1;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* Shooting Star Effect */
+        .shooting-star {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: white;
+            box-shadow: 0 0 10px white;
+            animation: shoot 3s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes shoot {
+            0% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(300px, 300px);
+                opacity: 0;
+            }
+        }
+
+        .shooting-star:nth-child(1) {
+            top: 10%;
+            right: 20%;
+            animation-delay: 0s;
+        }
+
+        .shooting-star:nth-child(2) {
+            top: 30%;
+            right: 50%;
+            animation-delay: 5s;
+        }
+
+        .shooting-star:nth-child(3) {
+            top: 50%;
+            right: 10%;
+            animation-delay: 10s;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 120px;
+            text-align: center;
+            font-size: 14px;
+            color: #64748b;
+            padding: 40px;
+            border-top: 2px solid rgba(99, 102, 241, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 48px;
+            }
+
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="stars"></div>
+    
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+
+    <div class="container">
+
+        <header class="header">
+            {% if image_data %}
+            <img src="data:image/png;base64,{{ image_data }}" alt="{{ name }}" class="profile-image">
+            {% endif %}
+
+            <h1>{{ name }}</h1>
+            <div class="title">{{ title }}</div>
+
+            {% if contact.email or contact.phone or contact.linkedin or contact.github or contact.website %}
+            <div class="contact-links">
+                {% if contact.email %}
+                <a href="mailto:{{ contact.email }}" class="contact-link">Contact</a>
+                {% endif %}
+
+                {% if contact.linkedin %}
+                <a href="{{ contact.linkedin }}" target="_blank" class="contact-link">LinkedIn</a>
+                {% endif %}
+
+                {% if contact.github %}
+                <a href="{{ contact.github }}" target="_blank" class="contact-link">GitHub</a>
+                {% endif %}
+
+                {% if contact.website %}
+                <a href="{{ contact.website }}" target="_blank" class="contact-link">Website</a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </header>
+
+        <div class="cosmic-divider"></div>
+
+        <div class="summary">
+            {{ summary }}
+        </div>
+
+        <div class="cosmic-divider"></div>
+
+        {% if skills %}
+        <section>
+            <h2>SKILLS</h2>
+            <div class="skills-list">
+                {% for skill in skills %}
+                <span class="skill-tag">{{ skill }}</span>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+        {% if experiences %}
+        <section>
+            <h2>EXPERIENCE</h2>
+            {% for exp in experiences %}
+            <div class="item-card">
+                <div class="item-title">{{ exp.title }}</div>
+                <div class="item-meta">{{ exp.company }} • {{ exp.duration }}</div>
+                <div class="item-description">{{ exp.description }}</div>
+            </div>
+            {% endfor %}
+        </section>
+        {% endif %}
+
+        {% if education %}
+        <section>
+            <h2>EDUCATION</h2>
+            {% for edu in education %}
+            <div class="item-card">
+                <div class="item-title">{{ edu.degree }}</div>
+                <div class="item-meta">{{ edu.institution }} • {{ edu.year }}</div>
+            </div>
+            {% endfor %}
+        </section>
+        {% endif %}
+
+        <footer>
+            <p>Crafted among the stars with Stratfolio</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

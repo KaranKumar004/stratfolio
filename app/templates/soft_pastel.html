@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }} - Portfolio</title>
+    <meta name="description" content="{{ title }} - {{ summary[:150] }}">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bubble {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffeef8 0%, #e7f0ff 25%, #fff5e6 50%, #f0e6ff 75%, #e6fff5 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+            color: #4a4a4a;
+            font-family: 'Quicksand', sans-serif;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Floating Bubbles */
+        .bubble {
+            position: fixed;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 182, 193, 0.3));
+            pointer-events: none;
+            animation: bubble linear infinite;
+        }
+
+        .bubble:nth-child(1) {
+            width: 60px;
+            height: 60px;
+            left: 10%;
+            animation-duration: 15s;
+            animation-delay: 0s;
+        }
+
+        .bubble:nth-child(2) {
+            width: 40px;
+            height: 40px;
+            left: 30%;
+            animation-duration: 20s;
+            animation-delay: 3s;
+        }
+
+        .bubble:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            left: 50%;
+            animation-duration: 18s;
+            animation-delay: 6s;
+        }
+
+        .bubble:nth-child(4) {
+            width: 50px;
+            height: 50px;
+            left: 70%;
+            animation-duration: 22s;
+            animation-delay: 2s;
+        }
+
+        .bubble:nth-child(5) {
+            width: 70px;
+            height: 70px;
+            left: 85%;
+            animation-duration: 16s;
+            animation-delay: 8s;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 30px;
+            border: 6px solid white;
+            box-shadow: 
+                0 10px 40px rgba(255, 182, 193, 0.3),
+                0 0 0 12px rgba(255, 255, 255, 0.5);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 64px;
+            margin-bottom: 15px;
+            color: #ff8fb3;
+            text-shadow: 2px 2px 4px rgba(255, 143, 179, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .title {
+            font-size: 22px;
+            color: #a685c7;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            color: #8fa3d1;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 12px 24px;
+            background: white;
+            border-radius: 25px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(143, 163, 209, 0.2);
+        }
+
+        .contact-link:hover {
+            background: #8fa3d1;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(143, 163, 209, 0.4);
+        }
+
+        /* Cloud Divider */
+        .cloud-divider {
+            text-align: center;
+            font-size: 48px;
+            margin: 60px 0;
+            opacity: 0.3;
+        }
+
+        /* Section Headers */
+        h2 {
+            font-family: 'Pacifico', cursive;
+            font-size: 42px;
+            color: #ff8fb3;
+            text-align: center;
+            margin-top: 80px;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(255, 143, 179, 0.2);
+        }
+
+        /* Summary */
+        .summary {
+            font-size: 18px;
+            line-height: 1.9;
+            color: #6b6b6b;
+            text-align: center;
+            padding: 40px;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(255, 182, 193, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Skills */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .skill-tag {
+            background: white;
+            color: #ff8fb3;
+            padding: 12px 24px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 143, 179, 0.15);
+        }
+
+        .skill-tag:hover {
+            background: linear-gradient(135deg, #ffb3d0 0%, #c7a3ff 100%);
+            color: white;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 143, 179, 0.3);
+        }
+
+        /* Cards */
+        .item-card {
+            margin-bottom: 25px;
+            padding: 35px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(255, 182, 193, 0.15);
+            transition: all 0.4s;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .item-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(255, 143, 179, 0.25);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .item-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #ff8fb3;
+            margin-bottom: 10px;
+        }
+
+        .item-meta {
+            color: #a685c7;
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .item-description {
+            color: #6b6b6b;
+            line-height: 1.8;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        /* Decorative Hearts */
+        .heart {
+            position: fixed;
+            color: rgba(255, 143, 179, 0.2);
+            font-size: 24px;
+            pointer-events: none;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .heart:nth-child(1) {
+            top: 20%;
+            right: 10%;
+            animation-delay: 0s;
+        }
+
+        .heart:nth-child(2) {
+            top: 60%;
+            left: 5%;
+            animation-delay: 2s;
+        }
+
+        .heart:nth-child(3) {
+            bottom: 20%;
+            right: 5%;
+            animation-delay: 4s;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 100px;
+            text-align: center;
+            font-size: 14px;
+            color: #a685c7;
+            padding: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 42px;
+            }
+
+            .profile-image {
+                width: 140px;
+                height: 140px;
+            }
+
+            .bubble {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <div class="heart">♥</div>
+    <div class="heart">♥</div>
+    <div class="heart">♥</div>
+
+    <div class="container">
+
+        <header class="header">
+            {% if image_data %}
+            <img src="data:image/png;base64,{{ image_data }}" alt="{{ name }}" class="profile-image">
+            {% endif %}
+
+            <h1>{{ name }}</h1>
+            <div class="title">{{ title }}</div>
+
+            {% if contact.email or contact.phone or contact.linkedin or contact.github or contact.website %}
+            <div class="contact-links">
+                {% if contact.email %}
+                <a href="mailto:{{ contact.email }}" class="contact-link">✉ Email</a>
+                {% endif %}
+
+                {% if contact.linkedin %}
+                <a href="{{ contact.linkedin }}" target="_blank" class="contact-link">💼 LinkedIn</a>
+                {% endif %}
+
+                {% if contact.github %}
+                <a href="{{ contact.github }}" target="_blank" class="contact-link">💻 GitHub</a>
+                {% endif %}
+
+                {% if contact.website %}
+                <a href="{{ contact.website }}" target="_blank" class="contact-link">🌐 Website</a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </header>
+
+        <div class="cloud-divider">☁</div>
+
+        <div class="summary">
+            {{ summary }}
+        </div>
+
+        <div class="cloud-divider">☁</div>
+
+        {% if skills %}
+        <section>
+            <h2>Skills</h2>
+            <div class="skills-list">
+                {% for skill in skills %}
+                <span class="skill-tag">{{ skill }}</span>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+        {% if experiences %}
+        <section>
+            <h2>Experience</h2>
+            {% for exp in experiences %}
+            <div class="item-card">
+                <div class="item-title">{{ exp.title }}</div>
+                <div class="item-meta">{{ exp.company }} • {{ exp.duration }}</div>
+                <div class="item-description">{{ exp.description }}</div>
+            </div>
+            {% endfor %}
+        </section>
+        {% endif %}
+
+        {% if education %}
+        <section>
+            <h2>Education</h2>
+            {% for edu in education %}
+            <div class="item-card">
+                <div class="item-title">{{ edu.degree }}</div>
+                <div class="item-meta">{{ edu.institution }} • {{ edu.year }}</div>
+            </div>
+            {% endfor %}
+        </section>
+        {% endif %}
+
+        <footer>
+            <p>Made with ♥ using Stratfolio</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

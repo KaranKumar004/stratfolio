@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }} - Portfolio</title>
+    <meta name="description" content="{{ title }} - {{ summary[:150] }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Julius+Sans+One&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes shimmerGold {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        body {
+            background: #1a1a1a;
+            color: #d4af37;
+            font-family: 'Raleway', sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Art Deco Pattern Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(212, 175, 55, 0.03) 35px, rgba(212, 175, 55, 0.03) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(212, 175, 55, 0.03) 35px, rgba(212, 175, 55, 0.03) 70px);
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 100px 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Geometric Decorations */
+        .deco-frame {
+            position: fixed;
+            border: 3px solid rgba(212, 175, 55, 0.3);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .deco-frame.top {
+            top: 30px;
+            left: 30px;
+            right: 30px;
+            height: 50px;
+            border-bottom: none;
+        }
+
+        .deco-frame.bottom {
+            bottom: 30px;
+            left: 30px;
+            right: 30px;
+            height: 50px;
+            border-top: none;
+        }
+
+        /* Geometric Corner Elements */
+        .corner-accent {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            border: 2px solid #d4af37;
+            pointer-events: none;
+            z-index: 11;
+        }
+
+        .corner-accent::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(212, 175, 55, 0.5);
+            top: 8px;
+            left: 8px;
+        }
+
+        .corner-accent.tl {
+            top: 40px;
+            left: 40px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .corner-accent.tr {
+            top: 40px;
+            right: 40px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .corner-accent.bl {
+            bottom: 40px;
+            left: 40px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .corner-accent.br {
+            bottom: 40px;
+            right: 40px;
+            border-left: none;
+            border-top: none;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 80px;
+            animation: fadeInScale 1s ease-out;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 40px;
+            border: 5px solid #d4af37;
+            padding: 10px;
+            background: 
+                linear-gradient(45deg, #1a1a1a 25%, transparent 25%),
+                linear-gradient(-45deg, #1a1a1a 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #1a1a1a 75%),
+                linear-gradient(-45deg, transparent 75%, #1a1a1a 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            box-shadow: 
+                0 0 0 2px rgba(212, 175, 55, 0.3),
+                0 20px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        .ornament {
+            font-size: 48px;
+            color: #d4af37;
+            margin: 30px 0;
+            font-family: 'Poiret One', cursive;
+        }
+
+        h1 {
+            font-family: 'Julius Sans One', sans-serif;
+            font-size: 72px;
+            margin-bottom: 20px;
+            color: #d4af37;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            font-weight: 400;
+            background: linear-gradient(90deg, #d4af37, #f4e4a5, #d4af37, #f4e4a5);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmerGold 3s linear infinite;
+        }
+
+        .title {
+            font-size: 20px;
+            color: #c9a961;
+            letter-spacing: 6px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        .title::before,
+        .title::after {
+            content: '◆';
+            margin: 0 20px;
+            font-size: 14px;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .contact-link {
+            color: #d4af37;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 12px 30px;
+            border: 2px solid #d4af37;
+            background: transparent;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            transition: all 0.4s;
+            position: relative;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }
+
+        .contact-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: #d4af37;
+            transition: width 0.4s;
+            z-index: -1;
+        }
+
+        .contact-link:hover::before {
+            width: 100%;
+        }
+
+        .contact-link:hover {
+            color: #1a1a1a;
+        }
+
+        /* Geometric Divider */
+        .geometric-divider {
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            margin: 80px auto;
+            position: relative;
+        }
+
+        .geometric-divider::before,
+        .geometric-divider::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d4af37;
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        .geometric-divider::before {
+            left: -10px;
+        }
+
+        .geometric-divider::after {
+            right: -10px;
+        }
+
+        /* Section Headers */
+        h2 {
+            font-family: 'Julius Sans One', sans-serif;
+            font-size: 42px;
+            color: #d4af37;
+            text-align: center;
+            margin-top: 100px;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            font-weight: 400;
+            position: relative;
+        }
+
+        h2::before,
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 2px;
+            background: #d4af37;
+            top: 50%;
+        }
+
+        h2::before {
+            left: calc(50% - 200px);
+        }
+
+        h2::after {
+            right: calc(50% - 200px);
+        }
+
+        /* Summary */
+        .summary {
+            font-size: 18px;
+            line-height: 2;
+            color: #c9a961;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            padding: 50px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+            position: relative;
+            background: rgba(212, 175, 55, 0.02);
+        }
+
+        /* Skills */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .skill-tag {
+            background: transparent;
+            color: #d4af37;
+            padding: 12px 24px;
+            border: 2px solid #d4af37;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+        }
+
+        .skill-tag:hover {
+            background: #d4af37;
+            color: #1a1a1a;
+            transform: translateY(-3px);
+        }
+
+        /* Cards */
+        .item-card {
+            margin-bottom: 40px;
+            padding: 40px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            clip-path: polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);
+            transition: all 0.4s;
+            background: rgba(212, 175, 55, 0.02);
+            position: relative;
+        }
+
+        .item-card::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+            pointer-events: none;
+        }
+
+        .item-card:hover {
+            border-color: #d4af37;
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .item-title {
+            font-family: 'Julius Sans One', sans-serif;
+            font-size: 28px;
+            font-weight: 400;
+            color: #d4af37;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .item-meta {
+            color: #c9a961;
+            font-size: 14px;
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .item-description {
+            color: #b8a87a;
+            line-height: 1.9;
+            font-size: 16px;
+            font-weight: 300;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 150px;
+            text-align: center;
+            font-size: 12px;
+            color: rgba(212, 175, 55, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            padding: 40px;
+            border-top: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 60px 30px;
+            }
+
+            h1 {
+                font-size: 48px;
+                letter-spacing: 4px;
+            }
+
+            .profile-image {
+                width: 160px;
+                height: 160px;
+            }
+
+            .corner-accent,
+            .deco-frame {
+                display: none;
+            }
+
+            h2::before,
+            h2::after {
+                width: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="deco-frame top"></div>
+    <div class="deco-frame bottom"></div>
+    
+    <div class="corner-accent tl"></div>
+    <div class="corner-accent tr"></div>
+    <div class="corner-accent bl"></div>
+    <div class="corner-accent br"></div>
+
+    <div class="container">
+
+        <header class="header">
+            {% if image_data %}
+            <img src="data:image/png;base64,{{ image_data }}" alt="{{ name }}" class="profile-image">
+            {% endif %}
+
+            <div class="ornament">✦</div>
+            <h1>{{ name }}</h1>
+            <div class="title">{{ title }}</div>
+
+            {% if contact.email or contact.phone or contact.linkedin or contact.github or contact.website %}
+            <div class="contact-links">
+                {% if contact.email %}
+                <a href="mailto:{{ contact.email }}" class="contact-link">Contact</a>
+                {% endif %}
+
+                {% if contact.linkedin %}
+                <a href="{{ contact.linkedin }}" target="_blank" class="contact-link">LinkedIn</a>
+                {% endif %}
+
+                {% if contact.github %}
+                <a href="{{ contact.github }}" target="_blank" class="contact-link">GitHub</a>
+                {% endif %}
+
+                {% if contact.website %}
+                <a href="{{ contact.website }}" target="_blank" class="contact-link">Website</a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </header>
+
+        <div class="geometric-divider"></div>
+
+        <div class="summary">
+            {{ summary }}
+        </div>
+
+        <div class="geometric-divider"></div>
+
+        {% if skills %}
+        <section>
+            <h2>Expertise</h2>
+            <div class="skills-list">
+                {% for skill in skills %}
+                <span class="skill-tag">{{ skill }}</span>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+        {% if experiences %}
+        <section>
+            <h2>Experience</h2>
+            {% for exp in experiences %}
+            <div class="item-card">
+                <div class="item-title">{{ exp.title }}</div>
+                <div class="item-meta">{{ exp.company }} · {{ exp.duration }}</div>
+                <div class="item-description">{{ exp.description }}</div>
+            </div>
+            {% endfor %}
+        </section>
+        {% endif %}
+
+        {% if education %}
+        <section>
+            <h2>Education</h2>
+            {% for edu in education %}
+            <div class="item-card">
+                <div class="item-title">{{ edu.degree }}</div>
+                <div class="item-meta">{{ edu.institution }} · {{ edu.year }}</div>
+            </div>
+            {% endfor %}
+        </section>
+        {% endif %}
+
+        <footer>
+            Crafted with Stratfolio
+        </footer>
+
+    </div>
+
+</body>
+</html>

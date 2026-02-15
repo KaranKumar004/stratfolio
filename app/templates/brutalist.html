@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }} - Portfolio</title>
+    <meta name="description" content="{{ title }} - {{ summary[:150] }}">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Archivo+Black&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #e8e8e8;
+            color: #000;
+            font-family: 'Space Mono', monospace;
+            line-height: 1.4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* Brutalist Grid */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(#000 1px, transparent 1px),
+                linear-gradient(90deg, #000 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Header */
+        .header {
+            background: #000;
+            color: #fff;
+            padding: 80px 60px;
+            margin-bottom: 0;
+            position: relative;
+            border-bottom: 20px solid #ff0000;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            right: 0;
+            width: 200px;
+            height: 20px;
+            background: #0000ff;
+        }
+
+        .profile-container {
+            display: flex;
+            gap: 60px;
+            align-items: flex-start;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border: 8px solid #fff;
+            filter: grayscale(100%) contrast(130%);
+            flex-shrink: 0;
+        }
+
+        .profile-text {
+            flex: 1;
+        }
+
+        h1 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 96px;
+            line-height: 0.9;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: -3px;
+        }
+
+        .title {
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-left: 6px solid #ff0000;
+            padding-left: 20px;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 0;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            color: #000;
+            background: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 15px 25px;
+            border: 3px solid #000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+        }
+
+        .contact-link:hover {
+            background: #ff0000;
+            color: #fff;
+            transform: translate(-3px, -3px);
+            box-shadow: 3px 3px 0 #000;
+        }
+
+        /* Content Section */
+        .content {
+            background: #fff;
+            padding: 80px 60px;
+            border-left: 20px solid #000;
+            border-right: 20px solid #000;
+        }
+
+        /* Section Headers */
+        h2 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 64px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            letter-spacing: -2px;
+            border-bottom: 8px solid #000;
+            padding-bottom: 20px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: 0;
+            width: 100px;
+            height: 8px;
+            background: #0000ff;
+        }
+
+        /* Summary */
+        .summary {
+            font-size: 20px;
+            line-height: 1.6;
+            color: #000;
+            margin-bottom: 60px;
+            padding: 40px;
+            background: #f5f5f5;
+            border: 4px solid #000;
+            border-left: 12px solid #ff0000;
+        }
+
+        /* Skills */
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 0;
+            margin-top: 40px;
+            border: 4px solid #000;
+        }
+
+        .skill-tag {
+            background: #fff;
+            color: #000;
+            padding: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid #000;
+            border-right: none;
+            border-bottom: none;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .skill-tag:hover {
+            background: #000;
+            color: #fff;
+            position: relative;
+            z-index: 10;
+            border: 2px solid #ff0000;
+        }
+
+        /* Cards */
+        .item-card {
+            margin-bottom: 40px;
+            padding: 40px;
+            background: #f5f5f5;
+            border: 4px solid #000;
+            position: relative;
+        }
+
+        .item-card::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 40px;
+            height: 40px;
+            background: #0000ff;
+        }
+
+        .item-card:hover {
+            border-color: #ff0000;
+        }
+
+        .item-card:hover::before {
+            background: #ff0000;
+        }
+
+        .item-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .item-meta {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .item-description {
+            color: #333;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: #fff;
+            text-align: center;
+            font-size: 14px;
+            padding: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-top: 20px solid #ff0000;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            width: 200px;
+            height: 20px;
+            background: #0000ff;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .header,
+            .content {
+                padding: 40px 30px;
+            }
+
+            .profile-container {
+                flex-direction: column;
+            }
+
+            h1 {
+                font-size: 56px;
+            }
+
+            h2 {
+                font-size: 42px;
+            }
+
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .skills-list {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="grid-overlay"></div>
+
+    <div class="container">
+
+        <header class="header">
+            <div class="profile-container">
+                {% if image_data %}
+                <img src="data:image/png;base64,{{ image_data }}" alt="{{ name }}" class="profile-image">
+                {% endif %}
+
+                <div class="profile-text">
+                    <h1>{{ name }}</h1>
+                    <div class="title">{{ title }}</div>
+
+                    {% if contact.email or contact.phone or contact.linkedin or contact.github or contact.website %}
+                    <div class="contact-links">
+                        {% if contact.email %}
+                        <a href="mailto:{{ contact.email }}" class="contact-link">EMAIL</a>
+                        {% endif %}
+
+                        {% if contact.linkedin %}
+                        <a href="{{ contact.linkedin }}" target="_blank" class="contact-link">LINKEDIN</a>
+                        {% endif %}
+
+                        {% if contact.github %}
+                        <a href="{{ contact.github }}" target="_blank" class="contact-link">GITHUB</a>
+                        {% endif %}
+
+                        {% if contact.website %}
+                        <a href="{{ contact.website }}" target="_blank" class="contact-link">WEB</a>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </header>
+
+        <div class="content">
+
+            <div class="summary">
+                {{ summary }}
+            </div>
+
+            {% if skills %}
+            <section>
+                <h2>Skills</h2>
+                <div class="skills-list">
+                    {% for skill in skills %}
+                    <div class="skill-tag">{{ skill }}</div>
+                    {% endfor %}
+                </div>
+            </section>
+            {% endif %}
+
+            {% if experiences %}
+            <section>
+                <h2>Work</h2>
+                {% for exp in experiences %}
+                <div class="item-card">
+                    <div class="item-title">{{ exp.title }}</div>
+                    <div class="item-meta">{{ exp.company }} / {{ exp.duration }}</div>
+                    <div class="item-description">{{ exp.description }}</div>
+                </div>
+                {% endfor %}
+            </section>
+            {% endif %}
+
+            {% if education %}
+            <section>
+                <h2>Education</h2>
+                {% for edu in education %}
+                <div class="item-card">
+                    <div class="item-title">{{ edu.degree }}</div>
+                    <div class="item-meta">{{ edu.institution }} / {{ edu.year }}</div>
+                </div>
+                {% endfor %}
+            </section>
+            {% endif %}
+
+        </div>
+
+        <footer>
+            Built with Stratfolio
+        </footer>
+
+    </div>
+
+</body>
+</html>
