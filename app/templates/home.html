@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stratfolio - Build Your Portfolio in Minutes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Crimson+Pro:wght@400;600&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Crimson+Pro:wght@400;600&display=swap"
+        rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -63,15 +66,20 @@
             position: absolute;
             width: 150%;
             height: 150%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
             background-size: 50px 50px;
             animation: gridMove 20s linear infinite;
             opacity: 0.3;
         }
 
         @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(50px, 50px);
+            }
         }
 
         .hero-content {
@@ -127,12 +135,12 @@
         .btn-primary {
             background: white;
             color: #667eea;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
         .btn-secondary {
@@ -190,10 +198,10 @@
         }
 
         .feature-card {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             padding: 40px;
             border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
         }
@@ -259,7 +267,7 @@
             font-size: 28px;
             font-weight: 700;
             margin: 0 auto 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .step-title {
@@ -269,7 +277,7 @@
         }
 
         .step-desc {
-            color: rgba(255,255,255,0.9);
+            color: rgba(255, 255, 255, 0.9);
             line-height: 1.6;
         }
 
@@ -291,14 +299,14 @@
             background: white;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             cursor: pointer;
         }
 
         .template-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
         }
 
         .template-preview {
@@ -326,7 +334,7 @@
             position: absolute;
             bottom: 10px;
             right: 10px;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             padding: 5px 15px;
             border-radius: 20px;
             font-size: 12px;
@@ -360,10 +368,10 @@
         }
 
         .guide-box {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             padding: 40px;
             border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             margin-top: 40px;
         }
 
@@ -421,6 +429,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -433,7 +442,10 @@
                 padding: 60px 20px;
             }
 
-            .features, .how-it-works, .templates, .github-guide {
+            .features,
+            .how-it-works,
+            .templates,
+            .github-guide {
                 padding: 80px 20px;
             }
 
@@ -453,6 +465,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Hero Section -->
@@ -461,28 +474,29 @@
             <!-- Logo -->
             <div class="logo-container" style="margin-bottom: 40px;">
                 <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="4" y="4" width="40" height="40" rx="8" fill="white" fill-opacity="0.1"/>
-                    <path d="M14 18L24 12L34 18V32L24 38L14 32V18Z" stroke="white" stroke-width="2" fill="none"/>
-                    <circle cx="24" cy="25" r="4" fill="white"/>
-                    <path d="M20 25L24 21L28 25L24 29L20 25Z" fill="#6366f1"/>
+                    <rect x="4" y="4" width="40" height="40" rx="8" fill="white" fill-opacity="0.1" />
+                    <path d="M14 18L24 12L34 18V32L24 38L14 32V18Z" stroke="white" stroke-width="2" fill="none" />
+                    <circle cx="24" cy="25" r="4" fill="white" />
+                    <path d="M20 25L24 21L28 25L24 29L20 25Z" fill="#6366f1" />
                 </svg>
                 <span class="logo-text">Stratfolio</span>
             </div>
 
             <h1>Build Your Portfolio in Minutes</h1>
-            <p class="tagline">Create stunning portfolio websites.<br>No coding required. Publish to GitHub Pages for free.</p>
-            
+            <p class="tagline">Create stunning portfolio websites.<br>No coding required. Publish to GitHub Pages for
+                free.</p>
+
             <div class="cta-buttons">
                 <a href="/builder" class="btn btn-primary">
                     <svg class="icon" viewBox="0 0 24 24">
-                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
                     </svg>
                     Start Building
                 </a>
                 <a href="#how-it-works" class="btn btn-secondary">
                     <svg class="icon" viewBox="0 0 24 24">
-                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
-                        <path d="M9 12l2 2 4-4"/>
+                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" />
+                        <path d="M9 12l2 2 4-4" />
                     </svg>
                     Learn How
                 </a>
@@ -495,63 +509,71 @@
         <div class="container">
             <h2 class="section-title">Why Students Love Stratfolio</h2>
             <p class="section-subtitle">Everything you need to showcase your work and land opportunities</p>
-            
+
             <div class="features-grid">
                 <div class="feature-card">
                     <svg class="feature-icon" viewBox="0 0 24 24">
-                        <rect x="3" y="3" width="7" height="7" rx="1"/>
-                        <rect x="14" y="3" width="7" height="7" rx="1"/>
-                        <rect x="14" y="14" width="7" height="7" rx="1"/>
-                        <rect x="3" y="14" width="7" height="7" rx="1"/>
+                        <rect x="3" y="3" width="7" height="7" rx="1" />
+                        <rect x="14" y="3" width="7" height="7" rx="1" />
+                        <rect x="14" y="14" width="7" height="7" rx="1" />
+                        <rect x="3" y="14" width="7" height="7" rx="1" />
                     </svg>
                     <h3 class="feature-title">Beautiful Templates</h3>
-                    <p class="feature-desc">Choose from professionally designed templates that make your work shine. Each one is mobile-responsive and modern.</p>
+                    <p class="feature-desc">Choose from professionally designed templates that make your work shine.
+                        Each one is mobile-responsive and modern.</p>
                 </div>
 
                 <div class="feature-card">
                     <svg class="feature-icon" viewBox="0 0 24 24">
-                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
                     </svg>
                     <h3 class="feature-title">Super Fast</h3>
-                    <p class="feature-desc">Build your portfolio in under 5 minutes. Fill in your details, pick a template, and download your website instantly.</p>
+                    <p class="feature-desc">Build your portfolio in under 5 minutes. Fill in your details, pick a
+                        template, and download your website instantly.</p>
                 </div>
 
                 <div class="feature-card">
                     <svg class="feature-icon" viewBox="0 0 24 24">
-                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                        <line x1="12" y1="22.08" x2="12" y2="12"/>
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                        <line x1="12" y1="22.08" x2="12" y2="12" />
                     </svg>
                     <h3 class="feature-title">AI-Powered</h3>
-                    <p class="feature-desc">Let AI enhance your professional summary to sound polished and impressive. Stand out from the crowd.</p>
+                    <p class="feature-desc">Let AI enhance your professional summary to sound polished and impressive.
+                        Stand out from the crowd.</p>
                 </div>
 
                 <div class="feature-card">
                     <svg class="feature-icon" viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="10"/>
-                        <line x1="2" y1="12" x2="22" y2="12"/>
-                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="2" y1="12" x2="22" y2="12" />
+                        <path
+                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
                     </svg>
                     <h3 class="feature-title">GitHub Pages Ready</h3>
-                    <p class="feature-desc">Get step-by-step instructions to publish your portfolio on GitHub Pages. Free hosting, custom domain support.</p>
+                    <p class="feature-desc">Get step-by-step instructions to publish your portfolio on GitHub Pages.
+                        Free hosting, custom domain support.</p>
                 </div>
 
                 <div class="feature-card">
                     <svg class="feature-icon" viewBox="0 0 24 24">
-                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
-                        <line x1="12" y1="18" x2="12.01" y2="18"/>
+                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                        <line x1="12" y1="18" x2="12.01" y2="18" />
                     </svg>
                     <h3 class="feature-title">Mobile Optimized</h3>
-                    <p class="feature-desc">Your portfolio looks perfect on all devices - phones, tablets, and desktops. No extra work needed.</p>
+                    <p class="feature-desc">Your portfolio looks perfect on all devices - phones, tablets, and desktops.
+                        No extra work needed.</p>
                 </div>
 
                 <div class="feature-card">
                     <svg class="feature-icon" viewBox="0 0 24 24">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                     </svg>
                     <h3 class="feature-title">Privacy First</h3>
-                    <p class="feature-desc">Your data stays with you. No accounts, no tracking, no databases. Download and own your portfolio.</p>
+                    <p class="feature-desc">Your data stays with you. No accounts, no tracking, no databases. Download
+                        and own your portfolio.</p>
                 </div>
             </div>
         </div>
@@ -562,18 +584,20 @@
         <div class="container">
             <h2 class="section-title">How It Works</h2>
             <p class="section-subtitle">Four simple steps to your online portfolio</p>
-            
+
             <div class="steps">
                 <div class="step">
                     <div class="step-number">1</div>
                     <h3 class="step-title">Fill Your Details</h3>
-                    <p class="step-desc">Enter your name, skills, experience, education, and upload a professional photo.</p>
+                    <p class="step-desc">Enter your name, skills, experience, education, and upload a professional
+                        photo.</p>
                 </div>
 
                 <div class="step">
                     <div class="step-number">2</div>
                     <h3 class="step-title">Choose a Template</h3>
-                    <p class="step-desc">Pick from our collection of stunning templates. See live preview as you type.</p>
+                    <p class="step-desc">Pick from our collection of stunning templates. See live preview as you type.
+                    </p>
                 </div>
 
                 <div class="step">
@@ -585,7 +609,8 @@
                 <div class="step">
                     <div class="step-number">4</div>
                     <h3 class="step-title">Publish on GitHub</h3>
-                    <p class="step-desc">Follow our guide to publish for free on GitHub Pages. Your portfolio will be live in minutes!</p>
+                    <p class="step-desc">Follow our guide to publish for free on GitHub Pages. Your portfolio will be
+                        live in minutes!</p>
                 </div>
             </div>
         </div>
@@ -596,55 +621,46 @@
         <div class="container">
             <h2 class="section-title">Stunning Templates</h2>
             <p class="section-subtitle">Choose the style that represents you best</p>
-            
+
             <div class="templates-grid">
                 <div class="template-card">
-                    <div class="template-preview" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
-                        <svg class="template-icon" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="5"/>
-                            <line x1="12" y1="1" x2="12" y2="3"/>
-                            <line x1="12" y1="21" x2="12" y2="23"/>
-                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                            <line x1="1" y1="12" x2="3" y2="12"/>
-                            <line x1="21" y1="12" x2="23" y2="12"/>
-                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-                        </svg>
+                    <div class="template-preview" style="background: #0f172a; padding: 0;">
+                        <img src="/static/images/templates/executive_dark.png" alt="Executive Dark Template"
+                            style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="template-info">
                         <h3 class="template-name">Executive Dark</h3>
-                        <p class="template-desc">Professional dark theme perfect for tech professionals and developers.</p>
+                        <p class="template-desc">Professional dark theme perfect for tech professionals and developers.
+                        </p>
                     </div>
                 </div>
 
                 <div class="template-card">
-                    <div class="template-preview" style="background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);">
+                    <div class="template-preview"
+                        style="background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);">
                         <svg class="template-icon" viewBox="0 0 24 24" style="stroke: #6366f1;">
-                            <circle cx="12" cy="12" r="5"/>
-                            <line x1="12" y1="1" x2="12" y2="3"/>
-                            <line x1="12" y1="21" x2="12" y2="23"/>
-                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                            <line x1="1" y1="12" x2="3" y2="12"/>
-                            <line x1="21" y1="12" x2="23" y2="12"/>
-                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                            <circle cx="12" cy="12" r="5" />
+                            <line x1="12" y1="1" x2="12" y2="3" />
+                            <line x1="12" y1="21" x2="12" y2="23" />
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                            <line x1="1" y1="12" x2="3" y2="12" />
+                            <line x1="21" y1="12" x2="23" y2="12" />
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
                         </svg>
                     </div>
                     <div class="template-info">
                         <h3 class="template-name">Executive Light</h3>
-                        <p class="template-desc">Clean, bright design ideal for creative professionals and designers.</p>
+                        <p class="template-desc">Clean, bright design ideal for creative professionals and designers.
+                        </p>
                     </div>
                 </div>
 
                 <div class="template-card">
-                    <div class="template-preview" style="background: linear-gradient(135deg, #fff 0%, #f9fafb 100%);">
-                        <svg class="template-icon" viewBox="0 0 24 24" style="stroke: #666;">
-                            <polyline points="4 7 4 4 20 4 20 7"/>
-                            <line x1="9" y1="20" x2="15" y2="20"/>
-                            <line x1="12" y1="4" x2="12" y2="20"/>
-                        </svg>
+                    <div class="template-preview" style="background: #ffffff; padding: 0;">
+                        <img src="/static/images/templates/minimal_clean.png" alt="Minimal Clean Template"
+                            style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="template-info">
                         <h3 class="template-name">Minimal Clean</h3>
@@ -653,10 +669,9 @@
                 </div>
 
                 <div class="template-card">
-                    <div class="template-preview" style="background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);">
-                        <svg class="template-icon" viewBox="0 0 24 24">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
+                    <div class="template-preview" style="background: #ec4899; padding: 0;">
+                        <img src="/static/images/templates/creative_bold.png" alt="Creative Bold Template"
+                            style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="template-info">
                         <h3 class="template-name">Creative Bold</h3>
@@ -665,30 +680,335 @@
                 </div>
 
                 <div class="template-card">
-                    <div class="template-preview" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
-                        <svg class="template-icon" viewBox="0 0 24 24">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        </svg>
+                    <div class="template-preview" style="background: #10b981; padding: 0;">
+                        <img src="/static/images/templates/modern_green.png" alt="Modern Green Template"
+                            style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="template-info">
                         <h3 class="template-name">Modern Green</h3>
-                        <p class="template-desc">Fresh, modern look perfect for environmental and sustainability fields.</p>
+                        <p class="template-desc">Fresh, modern look perfect for environmental and sustainability fields.
+                        </p>
                     </div>
                 </div>
 
                 <div class="template-card">
-                    <div class="template-preview" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);">
-                        <svg class="template-icon" viewBox="0 0 24 24">
-                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
-                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-                        </svg>
+                    <div class="template-preview" style="background: #ffffff; padding: 0;">
+                        <img src="/static/images/templates/professional_blue.png" alt="Professional Blue Template"
+                            style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="template-info">
                         <h3 class="template-name">Professional Blue</h3>
                         <p class="template-desc">Classic professional look for business and corporate roles.</p>
                     </div>
                 </div>
-            </div>
+
+                <div class="template-card">
+                    <div class="template-preview" style="background: #000000; padding: 0;">
+                        <img src="/static/images/templates/neon_cyberpunk.png" alt="Neon Cyberpunk Template"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">Neon Cyberpunk</h3>
+                        <p class="template-desc">Edgy, dark-mode terminal vibe for hackers and creative coders.</p>
+                    </div>
+                </div>
+
+                <!-- New Templates -->
+                <div class="template-card">
+                    <div class="template-preview" style="background: #0b1120; padding: 0;">
+                        <img src="/static/images/templates/data_scientist.png" alt="Data Scientist Template"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">Data Scientist</h3>
+                        <p class="template-desc">Technical, code-editor style dark theme perfect for data scientists and
+                            engineers.</p>
+                    </div>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-preview" style="background: #fdfbf7; padding: 0;">
+                        <img src="/static/images/templates/startup_founder.png" alt="Startup Founder Template"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">Startup Founder</h3>
+                        <p class="template-desc">Elegant, high-end minimalist design ideal for founders and executives.
+                        </p>
+                    </div>
+                </div>
+            <!-- Auto-generated templates -->
+
+                <div class="template-card">
+                    <div class="template-preview" style="background: #ffffff; padding: 0;">
+                        <!-- We use CSS blocks to represent the theme colors instead of actual images -->
+                        <div style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+                            <div style="height: 30%; background: #4285f4;"></div>
+                            <div style="height: 70%; background: #34a853; position: relative;">
+                                <div style="position: absolute; top: -20px; left: 20px; width: 40px; height: 40px; border-radius: 50%; background: #ea4335;"></div>
+                                <div style="margin: 30px 20px 0; height: 10px; width: 60%; background: #202124; opacity: 0.2; border-radius: 5px;"></div>
+                                <div style="margin: 10px 20px 0; height: 8px; width: 40%; background: #202124; opacity: 0.2; border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">Google Minimal</h3>
+                        <p class="template-desc">Clean white background with classic primary color accents (Red, Blue, Yellow, Green).</p>
+                    </div>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-preview" style="background: #f5f5f7; padding: 0;">
+                        <!-- We use CSS blocks to represent the theme colors instead of actual images -->
+                        <div style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+                            <div style="height: 30%; background: #0066cc;"></div>
+                            <div style="height: 70%; background: #86868b; position: relative;">
+                                <div style="position: absolute; top: -20px; left: 20px; width: 40px; height: 40px; border-radius: 50%; background: #1d1d1f;"></div>
+                                <div style="margin: 30px 20px 0; height: 10px; width: 60%; background: #1d1d1f; opacity: 0.2; border-radius: 5px;"></div>
+                                <div style="margin: 10px 20px 0; height: 8px; width: 40%; background: #1d1d1f; opacity: 0.2; border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">Apple Sleek</h3>
+                        <p class="template-desc">Ultra-minimalist, lots of whitespace, stark contrasts, and elegant typography.</p>
+                    </div>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-preview" style="background: #f3f2f1; padding: 0;">
+                        <!-- We use CSS blocks to represent the theme colors instead of actual images -->
+                        <div style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+                            <div style="height: 30%; background: #0078d4;"></div>
+                            <div style="height: 70%; background: #605e5c; position: relative;">
+                                <div style="position: absolute; top: -20px; left: 20px; width: 40px; height: 40px; border-radius: 50%; background: #107c10;"></div>
+                                <div style="margin: 30px 20px 0; height: 10px; width: 60%; background: #323130; opacity: 0.2; border-radius: 5px;"></div>
+                                <div style="margin: 10px 20px 0; height: 8px; width: 40%; background: #323130; opacity: 0.2; border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">Microsoft Fluent</h3>
+                        <p class="template-desc">Blocky, structured, professional design with familiar blue accents.</p>
+                    </div>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-preview" style="background: #ffffff; padding: 0;">
+                        <!-- We use CSS blocks to represent the theme colors instead of actual images -->
+                        <div style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+                            <div style="height: 30%; background: #ff9900;"></div>
+                            <div style="height: 70%; background: #232f3e; position: relative;">
+                                <div style="position: absolute; top: -20px; left: 20px; width: 40px; height: 40px; border-radius: 50%; background: #007185;"></div>
+                                <div style="margin: 30px 20px 0; height: 10px; width: 60%; background: #0f1111; opacity: 0.2; border-radius: 5px;"></div>
+                                <div style="margin: 10px 20px 0; height: 8px; width: 40%; background: #0f1111; opacity: 0.2; border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">Amazon Retail</h3>
+                        <p class="template-desc">Dark top bar, orange accents, highly functional and data-dense layout.</p>
+                    </div>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-preview" style="background: #ffffff; padding: 0;">
+                        <!-- We use CSS blocks to represent the theme colors instead of actual images -->
+                        <div style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+                            <div style="height: 30%; background: #0668E1;"></div>
+                            <div style="height: 70%; background: #8D949E; position: relative;">
+                                <div style="position: absolute; top: -20px; left: 20px; width: 40px; height: 40px; border-radius: 50%; background: #E4E6EB;"></div>
+                                <div style="margin: 30px 20px 0; height: 10px; width: 60%; background: #1c1e21; opacity: 0.2; border-radius: 5px;"></div>
+                                <div style="margin: 10px 20px 0; height: 8px; width: 40%; background: #1c1e21; opacity: 0.2; border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">Meta Connect</h3>
+                        <p class="template-desc">Modern blue gradients, rounded corners, and a social-media feed feel.</p>
+                    </div>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-preview" style="background: #141414; padding: 0;">
+                        <!-- We use CSS blocks to represent the theme colors instead of actual images -->
+                        <div style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+                            <div style="height: 30%; background: #e50914;"></div>
+                            <div style="height: 70%; background: #333333; position: relative;">
+                                <div style="position: absolute; top: -20px; left: 20px; width: 40px; height: 40px; border-radius: 50%; background: #b3b3b3;"></div>
+                                <div style="margin: 30px 20px 0; height: 10px; width: 60%; background: #ffffff; opacity: 0.2; border-radius: 5px;"></div>
+                                <div style="margin: 10px 20px 0; height: 8px; width: 40%; background: #ffffff; opacity: 0.2; border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">Netflix Cinematic</h3>
+                        <p class="template-desc">Deep black background, striking red accents, large immersive visuals.</p>
+                    </div>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-preview" style="background: #121212; padding: 0;">
+                        <!-- We use CSS blocks to represent the theme colors instead of actual images -->
+                        <div style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+                            <div style="height: 30%; background: #1ed760;"></div>
+                            <div style="height: 70%; background: #b3b3b3; position: relative;">
+                                <div style="position: absolute; top: -20px; left: 20px; width: 40px; height: 40px; border-radius: 50%; background: #535353;"></div>
+                                <div style="margin: 30px 20px 0; height: 10px; width: 60%; background: #ffffff; opacity: 0.2; border-radius: 5px;"></div>
+                                <div style="margin: 10px 20px 0; height: 8px; width: 40%; background: #ffffff; opacity: 0.2; border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">Spotify Audio</h3>
+                        <p class="template-desc">Dark mode with vibrant, punchy green accents and bold typography.</p>
+                    </div>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-preview" style="background: #f6f9fc; padding: 0;">
+                        <!-- We use CSS blocks to represent the theme colors instead of actual images -->
+                        <div style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+                            <div style="height: 30%; background: #635bff;"></div>
+                            <div style="height: 70%; background: #0a2540; position: relative;">
+                                <div style="position: absolute; top: -20px; left: 20px; width: 40px; height: 40px; border-radius: 50%; background: #00d4ff;"></div>
+                                <div style="margin: 30px 20px 0; height: 10px; width: 60%; background: #424770; opacity: 0.2; border-radius: 5px;"></div>
+                                <div style="margin: 10px 20px 0; height: 8px; width: 40%; background: #424770; opacity: 0.2; border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">Stripe FinTech</h3>
+                        <p class="template-desc">Sleek gradients, crisp typography, and high-contrast blurple accents.</p>
+                    </div>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-preview" style="background: #000000; padding: 0;">
+                        <!-- We use CSS blocks to represent the theme colors instead of actual images -->
+                        <div style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+                            <div style="height: 30%; background: #ff9900;"></div>
+                            <div style="height: 70%; background: #333333; position: relative;">
+                                <div style="position: absolute; top: -20px; left: 20px; width: 40px; height: 40px; border-radius: 50%; background: #ffffff;"></div>
+                                <div style="margin: 30px 20px 0; height: 10px; width: 60%; background: #ff9900; opacity: 0.2; border-radius: 5px;"></div>
+                                <div style="margin: 10px 20px 0; height: 8px; width: 40%; background: #ff9900; opacity: 0.2; border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">Bloomberg Terminal</h3>
+                        <p class="template-desc">Intense dark mode, amber/orange text, data-heavy layout.</p>
+                    </div>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-preview" style="background: #ffffff; padding: 0;">
+                        <!-- We use CSS blocks to represent the theme colors instead of actual images -->
+                        <div style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+                            <div style="height: 30%; background: #ff385c;"></div>
+                            <div style="height: 70%; background: #717171; position: relative;">
+                                <div style="position: absolute; top: -20px; left: 20px; width: 40px; height: 40px; border-radius: 50%; background: #b0b0b0;"></div>
+                                <div style="margin: 30px 20px 0; height: 10px; width: 60%; background: #222222; opacity: 0.2; border-radius: 5px;"></div>
+                                <div style="margin: 10px 20px 0; height: 8px; width: 40%; background: #222222; opacity: 0.2; border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">Airbnb Travel</h3>
+                        <p class="template-desc">Warm, inviting design with soft peach/coral accents and friendly rounded fonts.</p>
+                    </div>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-preview" style="background: #ffffff; padding: 0;">
+                        <!-- We use CSS blocks to represent the theme colors instead of actual images -->
+                        <div style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+                            <div style="height: 30%; background: #000000;"></div>
+                            <div style="height: 70%; background: #eeeeee; position: relative;">
+                                <div style="position: absolute; top: -20px; left: 20px; width: 40px; height: 40px; border-radius: 50%; background: #545454;"></div>
+                                <div style="margin: 30px 20px 0; height: 10px; width: 60%; background: #000000; opacity: 0.2; border-radius: 5px;"></div>
+                                <div style="margin: 10px 20px 0; height: 8px; width: 40%; background: #000000; opacity: 0.2; border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">Uber Motion</h3>
+                        <p class="template-desc">Stark contrast, exclusively black and white, highly utilitarian.</p>
+                    </div>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-preview" style="background: #0d1117; padding: 0;">
+                        <!-- We use CSS blocks to represent the theme colors instead of actual images -->
+                        <div style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+                            <div style="height: 30%; background: #58a6ff;"></div>
+                            <div style="height: 70%; background: #30363d; position: relative;">
+                                <div style="position: absolute; top: -20px; left: 20px; width: 40px; height: 40px; border-radius: 50%; background: #8b949e;"></div>
+                                <div style="margin: 30px 20px 0; height: 10px; width: 60%; background: #c9d1d9; opacity: 0.2; border-radius: 5px;"></div>
+                                <div style="margin: 10px 20px 0; height: 8px; width: 40%; background: #c9d1d9; opacity: 0.2; border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">GitHub Dev</h3>
+                        <p class="template-desc">Classic developer styling, gray backgrounds, blue links, monospace code blocks.</p>
+                    </div>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-preview" style="background: #000000; padding: 0;">
+                        <!-- We use CSS blocks to represent the theme colors instead of actual images -->
+                        <div style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+                            <div style="height: 30%; background: #ffffff;"></div>
+                            <div style="height: 70%; background: #111111; position: relative;">
+                                <div style="position: absolute; top: -20px; left: 20px; width: 40px; height: 40px; border-radius: 50%; background: #333333;"></div>
+                                <div style="margin: 30px 20px 0; height: 10px; width: 60%; background: #ededed; opacity: 0.2; border-radius: 5px;"></div>
+                                <div style="margin: 10px 20px 0; height: 8px; width: 40%; background: #ededed; opacity: 0.2; border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">Vercel Edge</h3>
+                        <p class="template-desc">Ultra modern, stark black/white with subtle gradients and perfect typography.</p>
+                    </div>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-preview" style="background: #36393f; padding: 0;">
+                        <!-- We use CSS blocks to represent the theme colors instead of actual images -->
+                        <div style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+                            <div style="height: 30%; background: #5865F2;"></div>
+                            <div style="height: 70%; background: #2f3136; position: relative;">
+                                <div style="position: absolute; top: -20px; left: 20px; width: 40px; height: 40px; border-radius: 50%; background: #3ba55c;"></div>
+                                <div style="margin: 30px 20px 0; height: 10px; width: 60%; background: #dcddde; opacity: 0.2; border-radius: 5px;"></div>
+                                <div style="margin: 10px 20px 0; height: 8px; width: 40%; background: #dcddde; opacity: 0.2; border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">Discord Gaming</h3>
+                        <p class="template-desc">Dark grayish-blue backgrounds with bright 'blurple' and green accents.</p>
+                    </div>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-preview" style="background: #ffffff; padding: 0;">
+                        <!-- We use CSS blocks to represent the theme colors instead of actual images -->
+                        <div style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+                            <div style="height: 30%; background: #0f0f0f;"></div>
+                            <div style="height: 70%; background: #f1f1ef; position: relative;">
+                                <div style="position: absolute; top: -20px; left: 20px; width: 40px; height: 40px; border-radius: 50%; background: #9b9a97;"></div>
+                                <div style="margin: 30px 20px 0; height: 10px; width: 60%; background: #37352f; opacity: 0.2; border-radius: 5px;"></div>
+                                <div style="margin: 10px 20px 0; height: 8px; width: 40%; background: #37352f; opacity: 0.2; border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <h3 class="template-name">Notion Document</h3>
+                        <p class="template-desc">Looks like a beautiful document, minimal CSS, serif typography options.</p>
+                    </div>
+                </div>
+</div>
         </div>
     </section>
 
@@ -697,41 +1017,46 @@
         <div class="container">
             <h2 class="section-title">Publish to GitHub Pages</h2>
             <p class="section-subtitle">Free hosting for your portfolio - no credit card needed</p>
-            
+
             <div class="guide-content">
                 <div class="guide-box">
                     <div class="guide-step">
                         <h4 class="guide-step-title">Create a GitHub Account</h4>
                         <p class="guide-step-desc">
-                            Sign up at <code>github.com</code> if you don't have an account. It's free and takes 2 minutes!
+                            Sign up at <code>github.com</code> if you don't have an account. It's free and takes 2
+                            minutes!
                         </p>
                     </div>
 
                     <div class="guide-step">
                         <h4 class="guide-step-title">Create a New Repository</h4>
                         <p class="guide-step-desc">
-                            Click the <code>+</code> icon → New repository. Name it <code>username.github.io</code> (replace 'username' with your GitHub username).
+                            Click the <code>+</code> icon → New repository. Name it <code>username.github.io</code>
+                            (replace 'username' with your GitHub username).
                         </p>
                     </div>
 
                     <div class="guide-step">
                         <h4 class="guide-step-title">Upload Your Portfolio</h4>
                         <p class="guide-step-desc">
-                            Rename your downloaded portfolio file to <code>index.html</code>. Click "Add file" → "Upload files" and drop your index.html file.
+                            Rename your downloaded portfolio file to <code>index.html</code>. Click "Add file" → "Upload
+                            files" and drop your index.html file.
                         </p>
                     </div>
 
                     <div class="guide-step">
                         <h4 class="guide-step-title">Enable GitHub Pages</h4>
                         <p class="guide-step-desc">
-                            Go to Settings → Pages → Source: select "main" branch → Save. Your site will be live at <code>username.github.io</code> in 2-3 minutes!
+                            Go to Settings → Pages → Source: select "main" branch → Save. Your site will be live at
+                            <code>username.github.io</code> in 2-3 minutes!
                         </p>
                     </div>
 
                     <div class="guide-step">
                         <h4 class="guide-step-title">Share Your Link</h4>
                         <p class="guide-step-desc">
-                            Add your portfolio URL to your resume, LinkedIn, and job applications. Update anytime by uploading a new index.html file!
+                            Add your portfolio URL to your resume, LinkedIn, and job applications. Update anytime by
+                            uploading a new index.html file!
                         </p>
                     </div>
                 </div>
@@ -739,7 +1064,7 @@
                 <div style="text-align: center; margin-top: 50px;">
                     <a href="/builder" class="btn btn-primary">
                         <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
                         </svg>
                         Start Building Your Portfolio
                     </a>
@@ -756,4 +1081,5 @@
     </footer>
 
 </body>
+
 </html>

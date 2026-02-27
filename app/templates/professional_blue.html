@@ -1,250 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ name }} - Portfolio</title>
-    <meta name="description" content="{{ title }} - {{ summary[:150] }}">
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <title>{{ name }} - {{ title }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
+        :root {
+            --primary-blue: #0f4c81;
+            /* Classic Blue */
+            --secondary-blue: #1e3a8a;
+            --light-blue: #f0f4f8;
+            --accent-blue: #3b82f6;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #1e293b;
-            font-family: 'IBM Plex Sans', sans-serif;
+            background-color: var(--light-blue);
+            color: var(--text-dark);
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .page {
-            background: white;
+        .container {
             max-width: 1000px;
-            margin: 40px auto;
-            box-shadow: 0 25px 80px rgba(0,0,0,0.3);
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .hero {
-            background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+        /* Header / Hero Section */
+        header {
+            background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--primary-blue) 100%);
             color: white;
-            padding: 60px 60px 80px;
-            position: relative;
-            overflow: hidden;
+            padding: 60px 0;
+            text-align: center;
+            border-bottom: 5px solid var(--accent-blue);
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-        }
-
-        .header {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        .profile-image {
-            width: 140px;
-            height: 140px;
+        .profile-img {
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
+            border: 4px solid white;
             object-fit: cover;
-            border: 5px solid rgba(255,255,255,0.3);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .header-content {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        h1 {
-            font-size: 44px;
-            margin-bottom: 10px;
+        .name {
+            font-size: 2.5rem;
             font-weight: 700;
-            letter-spacing: -1px;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
         }
 
         .title {
-            font-size: 20px;
-            opacity: 0.95;
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #dbeafe;
             margin-bottom: 25px;
-            font-weight: 400;
         }
 
-        .contact-links {
-            display: flex;
+        .contact-bar {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            display: inline-flex;
             gap: 20px;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
-        .contact-link {
+        .contact-item {
             color: white;
             text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            background: rgba(255,255,255,0.15);
-            padding: 8px 18px;
-            border-radius: 6px;
-            transition: all 0.2s;
-            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            transition: color 0.2s;
         }
 
-        .contact-link:hover {
-            background: rgba(255,255,255,0.25);
+        .contact-item:hover {
+            color: #93c5fd;
         }
 
-        .content {
-            padding: 60px;
-        }
-
-        h2 {
-            font-size: 26px;
-            color: #0f172a;
-            margin-top: 50px;
-            margin-bottom: 25px;
-            font-weight: 700;
-            padding-bottom: 12px;
-            border-bottom: 3px solid #e2e8f0;
-        }
-
-        h2:first-of-type {
-            margin-top: 0;
-        }
-
-        .summary {
-            font-size: 17px;
-            color: #475569;
-            line-height: 1.8;
-            margin-bottom: 40px;
-        }
-
-        .skills-list {
+        /* Main Content Layout */
+        .main-wrapper {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 12px;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin-top: -30px;
+            padding-bottom: 60px;
+        }
+
+        .card {
+            background: var(--bg-white);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            margin-bottom: 30px;
+            border-top: 4px solid var(--primary-blue);
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Summary */
+        .summary-text {
+            color: var(--text-light);
+            text-align: justify;
+        }
+
+        /* Skills */
+        .skills-list {
+            list-style: none;
         }
 
         .skill-tag {
-            background: #f1f5f9;
-            color: #4f46e5;
-            padding: 12px 18px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            text-align: center;
-            border: 2px solid #e2e8f0;
-            transition: all 0.3s;
+            display: inline-block;
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin: 0 8px 8px 0;
+            border: 1px solid #bfdbfe;
         }
 
-        .skill-tag:hover {
-            background: #e0e7ff;
-            border-color: #6366f1;
-            transform: translateY(-2px);
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
         }
 
-        .item-card {
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
             margin-bottom: 30px;
-            padding: 30px;
-            background: #f8fafc;
-            border-radius: 12px;
-            border-left: 4px solid #6366f1;
-            transition: all 0.3s;
         }
 
-        .item-card:hover {
-            background: #f1f5f9;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        .timeline-item:last-child {
+            margin-bottom: 0;
         }
 
-        .item-title {
-            font-size: 20px;
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            border: 3px solid var(--bg-white);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+            flex-wrap: wrap;
+        }
+
+        .job-title {
             font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-size: 1.1rem;
         }
 
-        .item-meta {
-            color: #64748b;
-            font-size: 15px;
-            margin-bottom: 15px;
+        .job-duration {
+            font-size: 0.85rem;
+            color: var(--accent-blue);
             font-weight: 500;
         }
 
-        .item-description {
-            color: #475569;
-            line-height: 1.7;
+        .company-name {
+            font-weight: 500;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
         }
 
-        footer {
-            background: #0f172a;
-            color: #94a3b8;
-            padding: 30px;
-            text-align: center;
-            font-size: 13px;
+        .job-desc {
+            color: var(--text-light);
+            font-size: 0.95rem;
         }
 
-        @media print {
-            body {
-                background: white;
-            }
-
-            .page {
-                margin: 0;
-                box-shadow: none;
-            }
-
-            .hero {
-                background: #4f46e5;
-                print-color-adjust: exact;
-                -webkit-print-color-adjust: exact;
-            }
+        /* Education */
+        .edu-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
         }
 
+        .edu-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .edu-degree {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .edu-school {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .edu-year {
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            margin-top: 3px;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .page {
-                margin: 0;
+            .main-wrapper {
+                grid-template-columns: 1fr;
             }
 
-            .hero {
-                padding: 40px 30px 60px;
-            }
-
-            .content {
-                padding: 40px 30px;
-            }
-
-            h1 {
-                font-size: 32px;
-            }
-
-            .header {
+            .job-header {
                 flex-direction: column;
-                text-align: center;
-            }
-
-            .profile-image {
-                width: 110px;
-                height: 110px;
-            }
-
-            .contact-links {
-                justify-content: center;
-            }
-
-            .skills-list {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
             }
         }
     </style>
@@ -252,87 +264,106 @@
 
 <body>
 
-<div class="page">
-
-    <div class="hero">
-        <header class="header">
+    <header>
+        <div class="container">
             {% if image_data %}
-            <img src="data:image/png;base64,{{ image_data }}" alt="{{ name }}" class="profile-image">
+            <img src="{{ image_data }}" alt="Profile Picture" class="profile-img">
             {% endif %}
 
-            <div class="header-content">
-                <h1>{{ name }}</h1>
-                <div class="title">{{ title }}</div>
+            <h1 class="name">{{ name }}</h1>
+            <p class="title">{{ title }}</p>
 
-                {% if contact.email or contact.phone or contact.linkedin or contact.github or contact.website %}
-                <div class="contact-links">
-                    {% if contact.email %}
-                    <a href="mailto:{{ contact.email }}" class="contact-link">📧 Email</a>
-                    {% endif %}
+            <div class="contact-bar">
+                {% if email %}
+                <a href="mailto:{{ email }}" class="contact-item">
+                    <i class="fas fa-envelope"></i> {{ email }}
+                </a>
+                {% endif %}
 
-                    {% if contact.phone %}
-                    <a href="tel:{{ contact.phone }}" class="contact-link">📱 Phone</a>
-                    {% endif %}
+                {% if phone %}
+                <span class="contact-item">
+                    <i class="fas fa-phone"></i> {{ phone }}
+                </span>
+                {% endif %}
 
-                    {% if contact.linkedin %}
-                    <a href="{{ contact.linkedin }}" target="_blank" class="contact-link">💼 LinkedIn</a>
-                    {% endif %}
+                {% if linkedin %}
+                <a href="{{ linkedin }}" target="_blank" class="contact-item">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                {% endif %}
 
-                    {% if contact.github %}
-                    <a href="{{ contact.github }}" target="_blank" class="contact-link">💻 GitHub</a>
-                    {% endif %}
+                {% if github %}
+                <a href="{{ github }}" target="_blank" class="contact-item">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                {% endif %}
 
-                    {% if contact.website %}
-                    <a href="{{ contact.website }}" target="_blank" class="contact-link">🌐 Website</a>
-                    {% endif %}
-                </div>
+                {% if website %}
+                <a href="{{ website }}" target="_blank" class="contact-item">
+                    <i class="fas fa-globe"></i> Website
+                </a>
                 {% endif %}
             </div>
-        </header>
+        </div>
+    </header>
+
+    <div class="container main-wrapper">
+
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="card">
+                <h2 class="section-title"><i class="fas fa-user-tie"></i> Profile</h2>
+                <p class="summary-text">{{ summary }}</p>
+            </div>
+
+            {% if skills and skills|length > 0 and skills[0] != '' %}
+            <div class="card">
+                <h2 class="section-title"><i class="fas fa-tools"></i> Expertise</h2>
+                <div class="skills-list">
+                    {% for skill in skills %}
+                    <span class="skill-tag">{{ skill.strip() }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if education and education|length > 0 and education[0].institution != '' %}
+            <div class="card">
+                <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
+                {% for edu in education %}
+                <div class="edu-item">
+                    <div class="edu-degree">{{ edu.degree }}</div>
+                    <div class="edu-school">{{ edu.institution }}</div>
+                    <div class="edu-year">{{ edu.year }}</div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Right Content -->
+        <div class="content">
+            {% if experiences and experiences|length > 0 and experiences[0].company != '' %}
+            <div class="card">
+                <h2 class="section-title"><i class="fas fa-briefcase"></i> Professional Experience</h2>
+                <div class="timeline">
+                    {% for exp in experiences %}
+                    <div class="timeline-item">
+                        <div class="job-header">
+                            <span class="job-title">{{ exp.title }}</span>
+                            <span class="job-duration">{{ exp.duration }}</span>
+                        </div>
+                        <div class="company-name">{{ exp.company }}</div>
+                        <p class="job-desc">{{ exp.description }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
     </div>
-
-    <div class="content">
-        <h2>Professional Summary</h2>
-        <div class="summary">
-            {{ summary }}
-        </div>
-
-        {% if skills %}
-        <h2>Core Competencies</h2>
-        <div class="skills-list">
-            {% for skill in skills %}
-            <span class="skill-tag">{{ skill }}</span>
-            {% endfor %}
-        </div>
-        {% endif %}
-
-        {% if experiences %}
-        <h2>Professional Experience</h2>
-        {% for exp in experiences %}
-        <div class="item-card">
-            <div class="item-title">{{ exp.title }}</div>
-            <div class="item-meta">{{ exp.company }} • {{ exp.duration }}</div>
-            <div class="item-description">{{ exp.description }}</div>
-        </div>
-        {% endfor %}
-        {% endif %}
-
-        {% if education %}
-        <h2>Education</h2>
-        {% for edu in education %}
-        <div class="item-card">
-            <div class="item-title">{{ edu.degree }}</div>
-            <div class="item-meta">{{ edu.institution }} • {{ edu.year }}</div>
-        </div>
-        {% endfor %}
-        {% endif %}
-    </div>
-
-    <footer>
-        Built with Stratfolio
-    </footer>
-
-</div>
 
 </body>
+
 </html>

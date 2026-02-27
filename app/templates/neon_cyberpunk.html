@@ -1,513 +1,421 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ name }} - Portfolio</title>
-    <meta name="description" content="{{ title }} - {{ summary[:150] }}">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
-    
+    <title>{{ name }} // CYBERPUNK</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
+        :root {
+            --bg-color: #050510;
+            --surface-color: #0a0a1a;
+            --neon-pink: #ff007f;
+            --neon-blue: #00f3ff;
+            --neon-purple: #b026ff;
+            --text-main: #e0e0e0;
+            --text-muted: #8a8a9a;
+            --border-glow: 0 0 10px rgba(0, 243, 255, 0.5);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        @keyframes glowPulse {
-            0%, 100% { text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff; }
-            50% { text-shadow: 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff, 0 0 50px #0ff; }
-        }
-
-        @keyframes scanline {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
-        }
-
-        @keyframes glitch {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-            100% { transform: translate(0); }
-        }
-
-        @keyframes neonBorder {
-            0%, 100% { box-shadow: 0 0 5px #0ff, 0 0 10px #0ff, inset 0 0 5px #0ff; }
-            50% { box-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff, inset 0 0 10px #0ff; }
+            font-family: 'Share Tech Mono', monospace;
         }
 
         body {
-            background: #0a0e27;
-            color: #0ff;
-            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            background-image:
+                linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            background-position: center center;
             position: relative;
             overflow-x: hidden;
         }
 
+        /* Glitch Scanline Effect */
         body::before {
-            content: '';
+            content: "";
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                repeating-linear-gradient(
-                    0deg,
-                    rgba(0, 255, 255, 0.03) 0px,
-                    transparent 1px,
-                    transparent 2px,
-                    rgba(0, 255, 255, 0.03) 3px
-                );
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(to bottom,
+                    rgba(255, 255, 255, 0),
+                    rgba(255, 255, 255, 0) 50%,
+                    rgba(0, 0, 0, 0.1) 50%,
+                    rgba(0, 0, 0, 0.1));
+            background-size: 100% 4px;
             pointer-events: none;
-            z-index: 1;
-        }
-
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #0ff, transparent);
-            animation: scanline 3s linear infinite;
-            pointer-events: none;
-            z-index: 2;
+            z-index: 9999;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 80px 40px;
-            position: relative;
-            z-index: 3;
-        }
-
-        /* Grid Background */
-        .grid-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            perspective: 1000px;
-            transform-style: preserve-3d;
-            pointer-events: none;
+            padding: 40px 20px;
         }
 
         /* Header */
-        .header {
-            text-align: center;
-            margin-bottom: 60px;
+        header {
+            border: 2px solid var(--neon-pink);
+            padding: 40px;
             position: relative;
+            margin-bottom: 50px;
+            background: rgba(10, 10, 26, 0.8);
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.2);
+            overflow: hidden;
         }
 
-        .profile-image {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
+        header::after {
+            content: 'SYS.INIT // OK';
+            position: absolute;
+            bottom: 5px;
+            right: 10px;
+            font-size: 0.8rem;
+            color: var(--neon-pink);
+            opacity: 0.7;
+        }
+
+        .profile-img-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            position: relative;
+            border: 2px solid var(--neon-blue);
+            padding: 5px;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            margin-bottom: 30px;
-            border: 3px solid #0ff;
-            box-shadow: 0 0 20px #0ff, 0 0 40px #0ff, inset 0 0 20px rgba(0, 255, 255, 0.2);
-            animation: neonBorder 2s ease-in-out infinite;
-            filter: brightness(1.1) contrast(1.2);
+            filter: contrast(120%) saturate(80%);
         }
 
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 64px;
-            font-weight: 900;
-            margin-bottom: 15px;
-            letter-spacing: 4px;
-            animation: glowPulse 2s ease-in-out infinite;
+        .glitch-text {
+            font-size: 3rem;
             text-transform: uppercase;
-            position: relative;
-        }
-
-        h1::before {
-            content: attr(data-text);
-            position: absolute;
-            left: 2px;
-            top: 2px;
-            color: #f0f;
-            opacity: 0.8;
-            z-index: -1;
-        }
-
-        h1::after {
-            content: attr(data-text);
-            position: absolute;
-            left: -2px;
-            top: -2px;
-            color: #ff0;
-            opacity: 0.8;
-            z-index: -1;
+            text-align: center;
+            color: var(--text-main);
+            text-shadow: 2px 0 var(--neon-blue), -2px 0 var(--neon-pink);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
         }
 
         .title {
-            font-size: 24px;
-            color: #ff00ff;
-            font-weight: 300;
-            letter-spacing: 2px;
+            text-align: center;
+            color: var(--neon-blue);
+            font-size: 1.2rem;
             margin-bottom: 30px;
-            text-shadow: 0 0 10px #ff00ff;
-        }
-
-        .contact-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            color: #0ff;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            padding: 10px 20px;
-            border: 2px solid #0ff;
-            background: rgba(0, 255, 255, 0.05);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
         }
 
-        .contact-link::before {
+        .title::before {
+            content: "> ";
+        }
+
+        .title::after {
+            content: " _";
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            border-top: 1px dashed var(--neon-purple);
+            padding-top: 20px;
+        }
+
+        .contact-item {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(0, 243, 255, 0.1);
+            border-color: var(--neon-blue);
+            box-shadow: var(--border-glow);
+            color: var(--neon-blue);
+        }
+
+        .contact-item i {
+            color: var(--neon-pink);
+        }
+
+        /* Sections */
+        .cyber-panel {
+            background: var(--surface-color);
+            border: 1px solid var(--neon-blue);
+            padding: 30px;
+            margin-bottom: 40px;
+            position: relative;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
+        }
+
+        .cyber-panel::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.4), transparent);
-            transition: left 0.5s;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border-top: 2px solid var(--neon-blue);
+            border-left: 2px solid var(--neon-blue);
         }
 
-        .contact-link:hover::before {
-            left: 100%;
-        }
-
-        .contact-link:hover {
-            background: rgba(0, 255, 255, 0.2);
-            box-shadow: 0 0 10px #0ff, inset 0 0 10px rgba(0, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        /* Section Headers */
-        h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 36px;
-            color: #ff00ff;
-            margin-top: 80px;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            position: relative;
-            padding-bottom: 15px;
-            text-shadow: 0 0 10px #ff00ff;
-        }
-
-        h2::after {
+        .cyber-panel::after {
             content: '';
             position: absolute;
             bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, #ff00ff, transparent);
-            box-shadow: 0 0 10px #ff00ff;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            border-bottom: 2px solid var(--neon-blue);
+            border-right: 2px solid var(--neon-blue);
         }
 
-        /* Summary */
-        .summary {
-            font-size: 18px;
-            line-height: 1.8;
-            color: #b0e0e6;
-            background: rgba(0, 255, 255, 0.05);
-            padding: 40px;
-            border-left: 3px solid #0ff;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .summary::before {
-            content: '>';
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-family: 'Orbitron', monospace;
-            font-size: 48px;
-            color: rgba(0, 255, 255, 0.1);
+        .section-header {
+            color: var(--neon-purple);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(176, 38, 255, 0.3);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         /* Skills */
-        .skills-list {
+        .skills-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 30px;
+            gap: 10px;
         }
 
-        .skill-tag {
-            background: rgba(0, 0, 0, 0.5);
-            color: #0ff;
-            padding: 12px 24px;
-            border: 2px solid #0ff;
-            font-size: 14px;
-            font-weight: 600;
+        .skill-node {
+            background: transparent;
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-blue);
+            padding: 8px 15px;
+            font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s;
         }
 
-        .skill-tag::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.3), transparent);
-            transform: rotate(45deg);
-            transition: all 0.5s;
+        .skill-node:hover {
+            background: var(--neon-blue);
+            color: var(--bg-color);
+            box-shadow: 0 0 10px var(--neon-blue);
         }
 
-        .skill-tag:hover {
-            background: rgba(0, 255, 255, 0.1);
-            box-shadow: 0 0 15px #0ff;
-            transform: translateY(-3px);
-        }
-
-        .skill-tag:hover::before {
-            left: 100%;
-        }
-
-        /* Cards */
-        .item-card {
+        /* Experience */
+        .exp-card {
+            border-left: 2px solid var(--neon-pink);
+            padding-left: 20px;
             margin-bottom: 30px;
-            padding: 35px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 2px solid rgba(0, 255, 255, 0.3);
             position: relative;
-            overflow: hidden;
+        }
+
+        .exp-card::before {
+            content: '>>';
+            position: absolute;
+            left: -15px;
+            top: 2px;
+            color: var(--neon-pink);
+            background: var(--surface-color);
+            font-size: 0.8rem;
+        }
+
+        .job-title {
+            color: var(--neon-blue);
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .job-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            border-bottom: 1px dotted rgba(255, 255, 255, 0.1);
+            padding-bottom: 5px;
+        }
+
+        .job-desc {
+            color: var(--text-main);
+        }
+
+        /* Education */
+        .edu-entry {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: rgba(176, 38, 255, 0.05);
+            border: 1px solid rgba(176, 38, 255, 0.2);
+            margin-bottom: 15px;
             transition: all 0.3s;
         }
 
-        .item-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
-            transition: left 0.5s;
+        .edu-entry:hover {
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 10px rgba(176, 38, 255, 0.2);
         }
 
-        .item-card:hover::before {
-            left: 100%;
+        .edu-degree {
+            color: var(--neon-pink);
+            font-size: 1.1rem;
         }
 
-        .item-card:hover {
-            border-color: #0ff;
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
-            transform: translateX(10px);
+        .edu-school {
+            color: var(--text-main);
         }
 
-        .item-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 24px;
-            font-weight: 700;
-            color: #0ff;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .item-meta {
-            color: #ff00ff;
-            font-size: 16px;
-            margin-bottom: 15px;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-
-        .item-description {
-            color: #b0e0e6;
-            line-height: 1.8;
-            font-size: 16px;
-        }
-
-        /* Footer */
-        footer {
-            margin-top: 120px;
-            text-align: center;
-            font-size: 14px;
-            color: rgba(0, 255, 255, 0.5);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            padding: 30px;
-            border-top: 1px solid rgba(0, 255, 255, 0.2);
-        }
-
-        /* Corner Decorations */
-        .corner-deco {
-            position: fixed;
-            width: 100px;
-            height: 100px;
-            border: 2px solid rgba(0, 255, 255, 0.3);
-            pointer-events: none;
-            z-index: 10;
-        }
-
-        .corner-deco.top-left {
-            top: 20px;
-            left: 20px;
-            border-right: none;
-            border-bottom: none;
-        }
-
-        .corner-deco.top-right {
-            top: 20px;
-            right: 20px;
-            border-left: none;
-            border-bottom: none;
-        }
-
-        .corner-deco.bottom-left {
-            bottom: 20px;
-            left: 20px;
-            border-right: none;
-            border-top: none;
-        }
-
-        .corner-deco.bottom-right {
-            bottom: 20px;
-            right: 20px;
-            border-left: none;
-            border-top: none;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 40px 20px;
-            }
-
-            h1 {
-                font-size: 40px;
-            }
-
-            .profile-image {
-                width: 140px;
-                height: 140px;
-            }
-
-            .corner-deco {
-                width: 50px;
-                height: 50px;
-            }
+        .edu-yr {
+            color: var(--neon-blue);
+            font-size: 0.9rem;
         }
     </style>
 </head>
 
 <body>
-    <div class="grid-bg"></div>
-    
-    <div class="corner-deco top-left"></div>
-    <div class="corner-deco top-right"></div>
-    <div class="corner-deco bottom-left"></div>
-    <div class="corner-deco bottom-right"></div>
 
     <div class="container">
-
-        <header class="header">
+        <!-- HEADER -->
+        <header>
             {% if image_data %}
-            <img src="data:image/png;base64,{{ image_data }}" alt="{{ name }}" class="profile-image">
-            {% endif %}
-
-            <h1 data-text="{{ name }}">{{ name }}</h1>
-            <div class="title">&lt; {{ title }} /&gt;</div>
-
-            {% if contact.email or contact.phone or contact.linkedin or contact.github or contact.website %}
-            <div class="contact-links">
-                {% if contact.email %}
-                <a href="mailto:{{ contact.email }}" class="contact-link">[MAIL]</a>
-                {% endif %}
-
-                {% if contact.linkedin %}
-                <a href="{{ contact.linkedin }}" target="_blank" class="contact-link">[LINKEDIN]</a>
-                {% endif %}
-
-                {% if contact.github %}
-                <a href="{{ contact.github }}" target="_blank" class="contact-link">[GITHUB]</a>
-                {% endif %}
-
-                {% if contact.website %}
-                <a href="{{ contact.website }}" target="_blank" class="contact-link">[WEB]</a>
-                {% endif %}
+            <div class="profile-img-container">
+                <img src="{{ image_data }}" alt="Profile Picture" class="profile-img">
             </div>
             {% endif %}
+
+            <h1 class="glitch-text">{{ name }}</h1>
+            <div class="title">{{ title }}</div>
+
+            <div class="contact-grid">
+                {% if email %}
+                <a href="mailto:{{ email }}" class="contact-item">
+                    <i class="fas fa-envelope"></i> {{ email }}
+                </a>
+                {% endif %}
+
+                {% if phone %}
+                <span class="contact-item">
+                    <i class="fas fa-terminal"></i> {{ phone }}
+                </span>
+                {% endif %}
+
+                {% if linkedin %}
+                <a href="{{ linkedin }}" target="_blank" class="contact-item">
+                    <i class="fab fa-linkedin-in"></i> LINKEDIN
+                </a>
+                {% endif %}
+
+                {% if github %}
+                <a href="{{ github }}" target="_blank" class="contact-item">
+                    <i class="fab fa-github-alt"></i> GITHUB
+                </a>
+                {% endif %}
+
+                {% if website %}
+                <a href="{{ website }}" target="_blank" class="contact-item">
+                    <i class="fas fa-globe"></i> WEBSITE
+                </a>
+                {% endif %}
+            </div>
         </header>
 
-        <div class="summary">
-            {{ summary }}
+        <!-- SUMMARY -->
+        <div class="cyber-panel">
+            <h2 class="section-header"><i class="fas fa-microchip"></i> // SYSTEM_OVERVIEW</h2>
+            <p>{{ summary }}</p>
         </div>
 
-        {% if skills %}
-        <section>
-            <h2>// Skills</h2>
-            <div class="skills-list">
+        <!-- SKILLS -->
+        {% if skills and skills|length > 0 and skills[0] != '' %}
+        <div class="cyber-panel">
+            <h2 class="section-header"><i class="fas fa-network-wired"></i> // LOADED_MODULES</h2>
+            <div class="skills-container">
                 {% for skill in skills %}
-                <span class="skill-tag">{{ skill }}</span>
+                <div class="skill-node">{{ skill.strip() }}</div>
                 {% endfor %}
             </div>
-        </section>
+        </div>
         {% endif %}
 
-        {% if experiences %}
-        <section>
-            <h2>// Experience</h2>
+        <!-- EXPERIENCE -->
+        {% if experiences and experiences|length > 0 and experiences[0].company != '' %}
+        <div class="cyber-panel">
+            <h2 class="section-header"><i class="fas fa-history"></i> // EXECUTION_HISTORY</h2>
+
             {% for exp in experiences %}
-            <div class="item-card">
-                <div class="item-title">{{ exp.title }}</div>
-                <div class="item-meta">{{ exp.company }} | {{ exp.duration }}</div>
-                <div class="item-description">{{ exp.description }}</div>
+            <div class="exp-card">
+                <div class="job-title">{{ exp.title }}</div>
+                <div class="job-meta">
+                    <span class="company">@{{ exp.company }}</span>
+                    <span class="duration">[{{ exp.duration }}]</span>
+                </div>
+                <p class="job-desc">{{ exp.description }}</p>
             </div>
             {% endfor %}
-        </section>
+        </div>
         {% endif %}
 
-        {% if education %}
-        <section>
-            <h2>// Education</h2>
+        <!-- EDUCATION -->
+        {% if education and education|length > 0 and education[0].institution != '' %}
+        <div class="cyber-panel">
+            <h2 class="section-header"><i class="fas fa-database"></i> // KNOWLEDGE_BASE</h2>
+
             {% for edu in education %}
-            <div class="item-card">
-                <div class="item-title">{{ edu.degree }}</div>
-                <div class="item-meta">{{ edu.institution }} | {{ edu.year }}</div>
+            <div class="edu-entry">
+                <div>
+                    <div class="edu-degree">{{ edu.degree }}</div>
+                    <div class="edu-school">{{ edu.institution }}</div>
+                </div>
+                <div class="edu-yr">[{{ edu.year }}]</div>
             </div>
             {% endfor %}
-        </section>
+        </div>
         {% endif %}
 
-        <footer>
-            &lt;/&gt; BUILT WITH STRATFOLIO &lt;/&gt;
-        </footer>
-
+        <div style="text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: 50px;">
+            EOF // CONNECTION_TERMINATED
+        </div>
     </div>
 
 </body>
+
 </html>

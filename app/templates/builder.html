@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -90,7 +91,9 @@
             margin-left: 4px;
         }
 
-        input, textarea, select {
+        input,
+        textarea,
+        select {
             width: 100%;
             padding: 10px 12px;
             margin-bottom: 16px;
@@ -101,12 +104,15 @@
             transition: border-color 0.2s;
         }
 
-        input:focus, textarea:focus, select:focus {
+        input:focus,
+        textarea:focus,
+        select:focus {
             outline: none;
             border-color: #6366f1;
         }
 
-        input.error, textarea.error {
+        input.error,
+        textarea.error {
             border-color: #ef4444;
         }
 
@@ -280,7 +286,7 @@
         .spinner {
             width: 40px;
             height: 40px;
-            border: 3px solid rgba(255,255,255,0.1);
+            border: 3px solid rgba(255, 255, 255, 0.1);
             border-top-color: white;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
@@ -288,7 +294,9 @@
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .help-text {
@@ -304,7 +312,8 @@
                 flex-direction: column;
             }
 
-            .form-section, .preview-section {
+            .form-section,
+            .preview-section {
                 width: 100%;
                 height: auto;
             }
@@ -318,172 +327,212 @@
 
 <body>
 
-<div class="wrapper">
+    <div class="wrapper">
 
-    <!-- LEFT FORM -->
-    <div class="form-section">
+        <!-- LEFT FORM -->
+        <div class="form-section">
 
-        <div class="header">
-            <div class="logo">✨ Stratfolio</div>
-            <a href="/" class="back-btn">← Home</a>
-        </div>
-
-        <form id="portfolioForm" action="/generate" method="post" enctype="multipart/form-data">
-            
-            <label>Choose Template</label>
-            <select name="template" id="templateSelect">
-                <optgroup label="Professional">
-                    <option value="executive_dark.html">🌙 Executive Dark</option>
-                    <option value="executive_light.html">☀️ Executive Light</option>
-                    <option value="professional_blue.html">💼 Professional Blue</option>
-                </optgroup>
-                <optgroup label="Modern & Clean">
-                    <option value="minimal_clean.html">✨ Minimal Clean</option>
-                    <option value="glassmorphism.html">💎 Glassmorphism</option>
-                    <option value="modern_green.html">🌿 Modern Green</option>
-                    <option value="paper_fold.html">📄 Paper Fold</option>
-                </optgroup>
-                <optgroup label="Creative & Bold">
-                    <option value="creative_bold.html">🎨 Creative Bold</option>
-                    <option value="magazine_editorial.html">📰 Magazine Editorial</option>
-                    <option value="luxury_gold.html">👑 Luxury Gold</option>
-                    <option value="art_deco.html">✦ Art Deco</option>
-                    <option value="soft_pastel.html">🌸 Soft Pastel</option>
-                </optgroup>
-                <optgroup label="Tech & Futuristic">
-                    <option value="neon_cyberpunk.html">⚡ Neon Cyberpunk</option>
-                    <option value="retro_terminal.html">💻 Retro Terminal</option>
-                    <option value="cosmic_space.html">🌌 Cosmic Space</option>
-                    <option value="brutalist.html">⬛ Brutalist</option>
-                </optgroup>
-            </select>
-
-            <h3>Basic Information</h3>
-
-            <label class="required">Name</label>
-            <input type="text" name="name" id="name" required>
-            <div class="error-message" id="name-error">Name is required</div>
-
-            <label class="required">Professional Title</label>
-            <input type="text" name="title" id="title" placeholder="e.g. Full Stack Developer" required>
-            <div class="error-message" id="title-error">Title is required</div>
-
-            <label class="required">Professional Summary</label>
-            <textarea name="summary" id="summary" rows="4" placeholder="Write a brief introduction about yourself and your expertise..." required></textarea>
-            <div class="error-message" id="summary-error">Summary is required</div>
-            
-            <button type="button" class="ai-enhance-btn" onclick="enhanceSummary()">
-                <span>✨</span> AI Enhance Summary
-            </button>
-            <div id="ai-loading" class="ai-loading">🤖 Enhancing your summary...</div>
-
-            <label>Skills (comma separated)</label>
-            <input type="text" name="skills" placeholder="e.g. JavaScript, Python, React, Node.js">
-            <p class="help-text">Separate multiple skills with commas</p>
-
-            <label>Profile Image</label>
-            <input type="file" name="profile_image" id="profileImage" accept="image/*">
-            <div class="image-preview" id="imagePreview">
-                <img id="previewImg" src="" alt="Profile preview">
+            <div class="header">
+                <div class="logo">✨ Stratfolio</div>
+                <a href="/" class="back-btn">← Home</a>
             </div>
 
-            <h3>Contact Information</h3>
+            <form id="portfolioForm" action="/generate" method="post" enctype="multipart/form-data">
 
-            <label>Email</label>
-            <input type="email" name="email" placeholder="your.email@example.com">
+                <label>Choose Template</label>
+                <select name="template" id="templateSelect">
+                    <optgroup label="Big Tech">
+                        <option value="theme_google.html">🏢 Google Minimal</option>
+                        <option value="theme_apple.html">🏢 Apple Sleek</option>
+                        <option value="theme_microsoft.html">🏢 Microsoft Fluent</option>
+                        <option value="theme_amazon.html">🏢 Amazon Retail</option>
+                        <option value="theme_meta.html">🏢 Meta Connect</option>
+                    </optgroup>
+                    <optgroup label="Entertainment">
+                        <option value="theme_netflix.html">🏢 Netflix Cinematic</option>
+                        <option value="theme_spotify.html">🏢 Spotify Audio</option>
+                    </optgroup>
+                    <optgroup label="Finance">
+                        <option value="theme_stripe.html">🏢 Stripe FinTech</option>
+                        <option value="theme_bloomberg.html">🏢 Bloomberg Terminal</option>
+                    </optgroup>
+                    <optgroup label="Lifestyle">
+                        <option value="theme_airbnb.html">🏢 Airbnb Travel</option>
+                        <option value="theme_uber.html">🏢 Uber Motion</option>
+                    </optgroup>
+                    <optgroup label="Developer Tools">
+                        <option value="theme_github.html">🏢 GitHub Dev</option>
+                        <option value="theme_vercel.html">🏢 Vercel Edge</option>
+                    </optgroup>
+                    <optgroup label="Social">
+                        <option value="theme_discord.html">🏢 Discord Gaming</option>
+                    </optgroup>
+                    <optgroup label="Productivity">
+                        <option value="theme_notion.html">🏢 Notion Document</option>
+                    </optgroup>
 
-            <label>Phone</label>
-            <input type="tel" name="phone" placeholder="+1 (123) 456-7890">
+                    <optgroup label="Professional">
+                        <option value="executive_dark.html">🌙 Executive Dark</option>
+                        <option value="executive_light.html">☀️ Executive Light</option>
+                        <option value="professional_blue.html">💼 Professional Blue</option>
+                    </optgroup>
+                    <optgroup label="Modern & Clean">
+                        <option value="minimal_clean.html">✨ Minimal Clean</option>
+                        <option value="glassmorphism.html">💎 Glassmorphism</option>
+                        <option value="modern_green.html">🌿 Modern Green</option>
+                        <option value="paper_fold.html">📄 Paper Fold</option>
+                        <option value="startup_founder.html">🚀 Startup Founder</option>
+                    </optgroup>
+                    <optgroup label="Creative & Bold">
+                        <option value="creative_bold.html">🎨 Creative Bold</option>
+                        <option value="magazine_editorial.html">📰 Magazine Editorial</option>
+                        <option value="luxury_gold.html">👑 Luxury Gold</option>
+                        <option value="art_deco.html">✦ Art Deco</option>
+                        <option value="soft_pastel.html">🌸 Soft Pastel</option>
+                    </optgroup>
+                    <optgroup label="Tech & Futuristic">
+                        <option value="neon_cyberpunk.html">⚡ Neon Cyberpunk</option>
+                        <option value="retro_terminal.html">💻 Retro Terminal</option>
+                        <option value="cosmic_space.html">🌌 Cosmic Space</option>
+                        <option value="brutalist.html">⬛ Brutalist</option>
+                        <option value="data_scientist.html">📊 Data Scientist</option>
+                    </optgroup>
+                </select>
 
-            <label>LinkedIn</label>
-            <input type="url" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                <h3>Basic Information</h3>
 
-            <label>GitHub</label>
-            <input type="url" name="github" placeholder="https://github.com/yourusername">
+                <label class="required">Name</label>
+                <input type="text" name="name" id="name" required>
+                <div class="error-message" id="name-error">Name is required</div>
 
-            <label>Website/Portfolio</label>
-            <input type="url" name="website" placeholder="https://yourwebsite.com">
+                <label class="required">Professional Title</label>
+                <input type="text" name="title" id="title" placeholder="e.g. Full Stack Developer" required>
+                <div class="error-message" id="title-error">Title is required</div>
 
-            <h3>Experience</h3>
+                <label class="required">Professional Summary</label>
+                <textarea name="summary" id="summary" rows="4"
+                    placeholder="Write a brief introduction about yourself and your expertise..." required></textarea>
+                <div class="error-message" id="summary-error">Summary is required</div>
 
-            <div id="experience-container">
-                <div class="section-block experience-block">
-                    <div class="section-header">
-                        <span class="section-title">Position 1</span>
-                    </div>
-
-                    <label>Job Title</label>
-                    <input type="text" name="job_title" placeholder="e.g. Software Engineer">
-
-                    <label>Company</label>
-                    <input type="text" name="company" placeholder="e.g. Tech Corp">
-
-                    <label>Duration</label>
-                    <input type="text" name="duration" placeholder="e.g. Jan 2022 - Present">
-
-                    <label>Description</label>
-                    <textarea name="job_description" rows="3" placeholder="Describe your role and achievements..."></textarea>
-                </div>
-            </div>
-
-            <button type="button" class="add-btn" onclick="addExperience()">+ Add Another Position</button>
-
-            <h3>Education</h3>
-
-            <div id="education-container">
-                <div class="section-block education-block">
-                    <div class="section-header">
-                        <span class="section-title">Education 1</span>
-                    </div>
-
-                    <label>Degree/Certification</label>
-                    <input type="text" name="edu_degree" placeholder="e.g. B.S. Computer Science">
-
-                    <label>Institution</label>
-                    <input type="text" name="edu_institution" placeholder="e.g. University of Technology">
-
-                    <label>Year</label>
-                    <input type="text" name="edu_year" placeholder="e.g. 2018 - 2022">
-                </div>
-            </div>
-
-            <button type="button" class="add-btn" onclick="addEducation()">+ Add Another Education</button>
-
-            <div class="form-actions">
-                <button type="submit" class="primary-btn">Generate Portfolio</button>
-                <button type="button" formaction="/download" formmethod="post" class="secondary-btn" onclick="downloadPortfolio()">
-                    Download HTML
+                <button type="button" class="ai-enhance-btn" onclick="enhanceSummary()">
+                    <span>✨</span> AI Enhance Summary
                 </button>
-            </div>
+                <div id="ai-loading" class="ai-loading">🤖 Enhancing your summary...</div>
 
-        </form>
+                <label>Skills (comma separated)</label>
+                <input type="text" name="skills" placeholder="e.g. JavaScript, Python, React, Node.js">
+                <p class="help-text">Separate multiple skills with commas</p>
 
-    </div>
+                <label>Profile Image</label>
+                <input type="file" name="profile_image" id="profileImage" accept="image/*">
+                <div class="image-preview" id="imagePreview">
+                    <img id="previewImg" src="" alt="Profile preview">
+                </div>
 
-    <!-- RIGHT PREVIEW -->
-    <div class="preview-section" id="preview">
-        <div class="preview-loading">
-            <div class="spinner"></div>
-            <div>Live preview will appear here...</div>
+                <h3>Contact Information</h3>
+
+                <label>Email</label>
+                <input type="email" name="email" placeholder="your.email@example.com">
+
+                <label>Phone</label>
+                <input type="tel" name="phone" placeholder="+1 (123) 456-7890">
+
+                <label>LinkedIn</label>
+                <input type="url" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+
+                <label>GitHub</label>
+                <input type="url" name="github" placeholder="https://github.com/yourusername">
+
+                <label>Website/Portfolio</label>
+                <input type="url" name="website" placeholder="https://yourwebsite.com">
+
+                <h3>Experience</h3>
+
+                <div id="experience-container">
+                    <div class="section-block experience-block">
+                        <div class="section-header">
+                            <span class="section-title">Position 1</span>
+                        </div>
+
+                        <label>Job Title</label>
+                        <input type="text" name="job_title" placeholder="e.g. Software Engineer">
+
+                        <label>Company</label>
+                        <input type="text" name="company" placeholder="e.g. Tech Corp">
+
+                        <label>Duration</label>
+                        <input type="text" name="duration" placeholder="e.g. Jan 2022 - Present">
+
+                        <label>Description</label>
+                        <textarea name="job_description" rows="3"
+                            placeholder="Describe your role and achievements..."></textarea>
+                    </div>
+                </div>
+
+                <button type="button" class="add-btn" onclick="addExperience()">+ Add Another Position</button>
+
+                <h3>Education</h3>
+
+                <div id="education-container">
+                    <div class="section-block education-block">
+                        <div class="section-header">
+                            <span class="section-title">Education 1</span>
+                        </div>
+
+                        <label>Degree/Certification</label>
+                        <input type="text" name="edu_degree" placeholder="e.g. B.S. Computer Science">
+
+                        <label>Institution</label>
+                        <input type="text" name="edu_institution" placeholder="e.g. University of Technology">
+
+                        <label>Year</label>
+                        <input type="text" name="edu_year" placeholder="e.g. 2018 - 2022">
+                    </div>
+                </div>
+
+                <button type="button" class="add-btn" onclick="addEducation()">+ Add Another Education</button>
+
+                <div class="form-actions">
+                    {% if user %}
+                    <button type="submit" name="action" value="save" class="primary-btn">Save to Dashboard</button>
+                    {% else %}
+                    <a href="/login" class="primary-btn"
+                        style="text-align:center; text-decoration:none; display:flex; align-items:center; justify-content:center;">Login
+                        to Save</a>
+                    {% endif %}
+                    <button type="button" class="secondary-btn" onclick="downloadPortfolio()">
+                        Download HTML
+                    </button>
+                </div>
+
+            </form>
+
         </div>
+
+        <!-- RIGHT PREVIEW -->
+        <div class="preview-section" id="preview">
+            <div class="preview-loading">
+                <div class="spinner"></div>
+                <div>Live preview will appear here...</div>
+            </div>
+        </div>
+
     </div>
 
-</div>
 
+    <script>
 
-<script>
+        let previewTimeout;
 
-let previewTimeout;
+        // Add Experience Block
+        function addExperience() {
+            const container = document.getElementById("experience-container");
+            const count = container.children.length + 1;
 
-// Add Experience Block
-function addExperience() {
-    const container = document.getElementById("experience-container");
-    const count = container.children.length + 1;
+            const block = document.createElement("div");
+            block.className = "section-block experience-block";
 
-    const block = document.createElement("div");
-    block.className = "section-block experience-block";
-
-    block.innerHTML = `
+            block.innerHTML = `
         <div class="section-header">
             <span class="section-title">Position ${count}</span>
             <button type="button" class="remove-btn" onclick="removeBlock(this)">Remove</button>
@@ -502,19 +551,19 @@ function addExperience() {
         <textarea name="job_description" rows="3" placeholder="Describe your role and achievements..."></textarea>
     `;
 
-    container.appendChild(block);
-    updatePreview();
-}
+            container.appendChild(block);
+            updatePreview();
+        }
 
-// Add Education Block
-function addEducation() {
-    const container = document.getElementById("education-container");
-    const count = container.children.length + 1;
+        // Add Education Block
+        function addEducation() {
+            const container = document.getElementById("education-container");
+            const count = container.children.length + 1;
 
-    const block = document.createElement("div");
-    block.className = "section-block education-block";
+            const block = document.createElement("div");
+            block.className = "section-block education-block";
 
-    block.innerHTML = `
+            block.innerHTML = `
         <div class="section-header">
             <span class="section-title">Education ${count}</span>
             <button type="button" class="remove-btn" onclick="removeBlock(this)">Remove</button>
@@ -530,173 +579,174 @@ function addEducation() {
         <input type="text" name="edu_year" placeholder="e.g. 2018 - 2022">
     `;
 
-    container.appendChild(block);
-    updatePreview();
-}
-
-// Remove Block
-function removeBlock(btn) {
-    const block = btn.closest('.section-block');
-    block.remove();
-    updatePreview();
-}
-
-// Image Preview
-document.getElementById('profileImage').addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            document.getElementById('previewImg').src = e.target.result;
-            document.getElementById('imagePreview').classList.add('show');
-        }
-        reader.readAsDataURL(file);
-    }
-});
-
-// AI Summary Enhancement
-function enhanceSummary() {
-    const summaryField = document.getElementById('summary');
-    const loading = document.getElementById("ai-loading");
-    const btn = event.target.closest('button');
-
-    if (!summaryField.value.trim()) {
-        alert('Please write a summary first before enhancing it.');
-        return;
-    }
-
-    const formData = new FormData();
-    formData.append("summary", summaryField.value);
-
-    btn.disabled = true;
-    loading.classList.add('show');
-
-    fetch("/enhance-summary", {
-        method: "POST",
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        loading.classList.remove('show');
-        btn.disabled = false;
-
-        if (data.enhanced) {
-            summaryField.value = data.enhanced;
+            container.appendChild(block);
             updatePreview();
         }
-        
-        if (data.error) {
-            console.warn('AI enhancement failed:', data.error);
+
+        // Remove Block
+        function removeBlock(btn) {
+            const block = btn.closest('.section-block');
+            block.remove();
+            updatePreview();
         }
-    })
-    .catch(() => {
-        loading.classList.remove('show');
-        btn.disabled = false;
-        alert('AI enhancement is currently unavailable. Please try again later.');
-    });
-}
 
-// Form Validation
-function validateForm() {
-    let isValid = true;
-
-    const name = document.getElementById('name');
-    const title = document.getElementById('title');
-    const summary = document.getElementById('summary');
-
-    // Reset errors
-    document.querySelectorAll('.error-message').forEach(el => el.classList.remove('show'));
-    document.querySelectorAll('input, textarea').forEach(el => el.classList.remove('error'));
-
-    if (!name.value.trim()) {
-        name.classList.add('error');
-        document.getElementById('name-error').classList.add('show');
-        isValid = false;
-    }
-
-    if (!title.value.trim()) {
-        title.classList.add('error');
-        document.getElementById('title-error').classList.add('show');
-        isValid = false;
-    }
-
-    if (!summary.value.trim()) {
-        summary.classList.add('error');
-        document.getElementById('summary-error').classList.add('show');
-        isValid = false;
-    }
-
-    return isValid;
-}
-
-// Live Preview with Debouncing
-function updatePreview() {
-    clearTimeout(previewTimeout);
-    
-    previewTimeout = setTimeout(() => {
-        const formData = new FormData(document.getElementById('portfolioForm'));
-
-        fetch("/preview", {
-            method: "POST",
-            body: formData
-        })
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById("preview").innerHTML = html;
-        })
-        .catch(error => {
-            console.error('Preview error:', error);
+        // Image Preview
+        document.getElementById('profileImage').addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('previewImg').src = e.target.result;
+                    document.getElementById('imagePreview').classList.add('show');
+                }
+                reader.readAsDataURL(file);
+            }
         });
-    }, 500); // 500ms debounce
-}
 
-// Form Submit
-document.getElementById('portfolioForm').addEventListener('submit', function(e) {
-    if (!validateForm()) {
-        e.preventDefault();
-        alert('Please fill in all required fields (Name, Title, Summary)');
-    }
-});
+        // AI Summary Enhancement
+        function enhanceSummary() {
+            const summaryField = document.getElementById('summary');
+            const loading = document.getElementById("ai-loading");
+            const btn = event.target.closest('button');
 
-// Download Portfolio
-function downloadPortfolio() {
-    if (!validateForm()) {
-        alert('Please fill in all required fields (Name, Title, Summary)');
-        return;
-    }
+            if (!summaryField.value.trim()) {
+                alert('Please write a summary first before enhancing it.');
+                return;
+            }
 
-    const form = document.getElementById('portfolioForm');
-    const formData = new FormData(form);
+            const formData = new FormData();
+            formData.append("summary", summaryField.value);
 
-    fetch('/download', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.blob())
-    .then(blob => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `${formData.get('name').toLowerCase().replace(/\s+/g, '_')}_portfolio.html`;
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-        document.body.removeChild(a);
-    })
-    .catch(error => {
-        console.error('Download error:', error);
-        alert('Failed to download portfolio. Please try again.');
-    });
-}
+            btn.disabled = true;
+            loading.classList.add('show');
 
-// Auto-update preview on input
-document.getElementById('portfolioForm').addEventListener('input', updatePreview);
-document.getElementById('templateSelect').addEventListener('change', updatePreview);
+            fetch("/enhance-summary", {
+                method: "POST",
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    loading.classList.remove('show');
+                    btn.disabled = false;
 
-// Initial preview
-updatePreview();
+                    if (data.enhanced) {
+                        summaryField.value = data.enhanced;
+                        updatePreview();
+                    }
 
-</script>
+                    if (data.error) {
+                        console.warn('AI enhancement failed:', data.error);
+                    }
+                })
+                .catch(() => {
+                    loading.classList.remove('show');
+                    btn.disabled = false;
+                    alert('AI enhancement is currently unavailable. Please try again later.');
+                });
+        }
+
+        // Form Validation
+        function validateForm() {
+            let isValid = true;
+
+            const name = document.getElementById('name');
+            const title = document.getElementById('title');
+            const summary = document.getElementById('summary');
+
+            // Reset errors
+            document.querySelectorAll('.error-message').forEach(el => el.classList.remove('show'));
+            document.querySelectorAll('input, textarea').forEach(el => el.classList.remove('error'));
+
+            if (!name.value.trim()) {
+                name.classList.add('error');
+                document.getElementById('name-error').classList.add('show');
+                isValid = false;
+            }
+
+            if (!title.value.trim()) {
+                title.classList.add('error');
+                document.getElementById('title-error').classList.add('show');
+                isValid = false;
+            }
+
+            if (!summary.value.trim()) {
+                summary.classList.add('error');
+                document.getElementById('summary-error').classList.add('show');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // Live Preview with Debouncing
+        function updatePreview() {
+            clearTimeout(previewTimeout);
+
+            previewTimeout = setTimeout(() => {
+                const formData = new FormData(document.getElementById('portfolioForm'));
+
+                fetch("/preview", {
+                    method: "POST",
+                    body: formData
+                })
+                    .then(response => response.text())
+                    .then(html => {
+                        document.getElementById("preview").innerHTML = html;
+                    })
+                    .catch(error => {
+                        console.error('Preview error:', error);
+                    });
+            }, 500); // 500ms debounce
+        }
+
+        // Form Submit
+        document.getElementById('portfolioForm').addEventListener('submit', function (e) {
+            if (!validateForm()) {
+                e.preventDefault();
+                alert('Please fill in all required fields (Name, Title, Summary)');
+            }
+        });
+
+        // Download Portfolio
+        function downloadPortfolio() {
+            if (!validateForm()) {
+                alert('Please fill in all required fields (Name, Title, Summary)');
+                return;
+            }
+
+            const form = document.getElementById('portfolioForm');
+            const formData = new FormData(form);
+
+            fetch('/download', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.blob())
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `${formData.get('name').toLowerCase().replace(/\s+/g, '_')}_portfolio.html`;
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    document.body.removeChild(a);
+                })
+                .catch(error => {
+                    console.error('Download error:', error);
+                    alert('Failed to download portfolio. Please try again.');
+                });
+        }
+
+        // Auto-update preview on input
+        document.getElementById('portfolioForm').addEventListener('input', updatePreview);
+        document.getElementById('templateSelect').addEventListener('change', updatePreview);
+
+        // Initial preview
+        updatePreview();
+
+    </script>
 
 </body>
+
 </html>

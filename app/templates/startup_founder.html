@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }} - {{ title }}</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fdfbf7;
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --primary: #d97706;
+            /* Amber/Gold */
+            --secondary: #0f172a;
+            /* Slate Dark */
+            --border-color: #e2e8f0;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23d97706" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0 60px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 4px solid #fff;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        .summary {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+        /* Contact Links */
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        /* Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 60px;
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        /* Timeline Items */
+        .timeline-item {
+            margin-bottom: 40px;
+            padding-left: 20px;
+            border-left: 2px solid var(--border-color);
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--primary);
+        }
+
+        .timeline-title {
+            font-size: 1.4rem;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .timeline-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .timeline-duration {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        .timeline-desc {
+            color: var(--text-muted);
+            white-space: pre-line;
+            line-height: 1.7;
+        }
+
+        /* Skills */
+        .skills-wrapper {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border-color);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-item {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--secondary);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-item:last-child {
+            border-bottom: none;
+        }
+
+        .skill-item::before {
+            content: '→';
+            color: var(--primary);
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* Value Prop Card for Sidebar */
+        .value-prop {
+            margin-top: 40px;
+            padding: 30px;
+            background: var(--secondary);
+            color: #fff;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .value-prop h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .value-prop p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .value-prop .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            background: var(--primary);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.2s;
+        }
+
+        .value-prop .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            {% if image_data %}
+            <img src="data:image/jpeg;base64,{{ image_data }}" alt="{{ name }}" class="profile-img">
+            {% endif %}
+
+            <h1>{{ name }}</h1>
+            <h2>{{ title }}</h2>
+
+            <p class="summary">
+                "{{ summary }}"
+            </p>
+
+            <div class="contact-links">
+                {% if contact.email %}
+                <a href="mailto:{{ contact.email }}">Email</a>
+                {% endif %}
+
+                {% if contact.phone %}
+                <a href="tel:{{ contact.phone }}">Phone</a>
+                {% endif %}
+
+                {% if contact.linkedin %}
+                <a href="{{ contact.linkedin }}" target="_blank">LinkedIn</a>
+                {% endif %}
+
+                {% if contact.website %}
+                <a href="{{ contact.website }}" target="_blank">Website</a>
+                {% endif %}
+
+                {% if contact.github %}
+                <a href="{{ contact.github }}" target="_blank">GitHub</a>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container grid">
+        <main>
+            {% if experiences %}
+            <section style="margin-bottom: 60px;">
+                <h3 class="section-title">Venture Experience</h3>
+
+                {% for exp in experiences %}
+                <div class="timeline-item">
+                    <h4 class="timeline-title">{{ exp.company }}</h4>
+                    <div class="timeline-subtitle">{{ exp.title }}</div>
+                    {% if exp.duration %}
+                    <div class="timeline-duration">{{ exp.duration }}</div>
+                    {% endif %}
+                    <p class="timeline-desc">{{ exp.description }}</p>
+                </div>
+                {% endfor %}
+            </section>
+            {% endif %}
+
+            {% if education %}
+            <section>
+                <h3 class="section-title">Education & Background</h3>
+
+                {% for edu in education %}
+                <div class="timeline-item">
+                    <h4 class="timeline-title">{{ edu.institution }}</h4>
+                    <div class="timeline-subtitle">{{ edu.degree }}</div>
+                    {% if edu.year %}
+                    <div class="timeline-duration">{{ edu.year }}</div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </section>
+            {% endif %}
+        </main>
+
+        <aside>
+            {% if skills %}
+            <div class="skills-wrapper">
+                <h3 class="section-title" style="font-size: 1.5rem; margin-bottom: 20px;">Core Competencies</h3>
+                <ul class="skill-list">
+                    {% for skill in skills %}
+                    <li class="skill-item">{{ skill }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            <!-- Decorative CTA box -->
+            <div class="value-prop">
+                <h3>Let's Build Something</h3>
+                <p>Always open to discussing disruptive ideas, strategic partnerships, and angel investing
+                    opportunities.</p>
+                {% if contact.email %}
+                <a href="mailto:{{ contact.email }}" class="btn">Get in Touch</a>
+                {% endif %}
+            </div>
+        </aside>
+    </div>
+
+</body>
+
+</html>
